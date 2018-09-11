@@ -1,4 +1,4 @@
-package com.example.calorycountapp;
+package com.example.calorycountapp.Adapter;
 
 import com.example.calorycountapp.Adapter.BaseRecyclerListener;
 

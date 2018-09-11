@@ -1,4 +1,4 @@
-package com.example.calorycountapp;
+package com.example.calorycountapp.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.astuetz.PagerSlidingTabStrip;
+import com.example.calorycountapp.R;
 import com.example.calorycountapp.View.MainFragment;
 
 public class MainActivity extends AppCompatActivity implements MvpView, DailyStatisticsFragment.passCaloryNumber {
