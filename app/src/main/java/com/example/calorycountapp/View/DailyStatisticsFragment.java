@@ -14,6 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.calorycountapp.Adapter.DailyStatisticsAdapter;
+import com.example.calorycountapp.Adapter.OnRecyclerObjectClickListener;
+import com.example.calorycountapp.ItemTouchHelperClass;
+import com.example.calorycountapp.Model.Entity;
+import com.example.calorycountapp.Presenter.DailyStatisticsPresenter;
+import com.example.calorycountapp.R;
+
+import java.util.List;
+
 public class DailyStatisticsFragment extends Fragment implements CategoryView,OnRecyclerObjectClickListener<Entity> {
 
     private DailyStatisticsPresenter presenter;

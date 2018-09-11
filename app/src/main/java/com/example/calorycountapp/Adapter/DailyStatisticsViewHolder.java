@@ -5,6 +5,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.calorycountapp.Model.Entity;
+import com.example.calorycountapp.Model.TemporaryEntity;
+import com.example.calorycountapp.R;
+
 public class DailyStatisticsViewHolder extends
         BaseViewHolder<Entity, OnRecyclerObjectClickListener<Entity>> {
 

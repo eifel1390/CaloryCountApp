@@ -12,6 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.calorycountapp.Adapter.CategoryDetailAdapter;
+import com.example.calorycountapp.Adapter.OnRecyclerObjectClickListener;
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.Model.Active;
+import com.example.calorycountapp.Model.Entity;
+import com.example.calorycountapp.Model.Product;
+import com.example.calorycountapp.Presenter.CategoryDetailPresenter;
+import com.example.calorycountapp.R;
+
+import java.util.List;
+
 public class CategoryDetail extends AppCompatActivity implements CategoryView,OnRecyclerObjectClickListener<Entity> {
 
     public static final String CATEGORY_DETAIL = "category_detail";

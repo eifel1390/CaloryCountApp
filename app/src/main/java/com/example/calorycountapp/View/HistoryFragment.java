@@ -9,6 +9,16 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.calorycountapp.Database.NumberCaloryPreferences;
+import com.example.calorycountapp.Presenter.HistoryFragmentPresenter;
+import com.example.calorycountapp.R;
+
+import org.eazegraph.lib.charts.StackedBarChart;
+import org.eazegraph.lib.models.BarModel;
+import org.eazegraph.lib.models.StackedBarModel;
+
+import java.util.Map;
+
 public class HistoryFragment extends Fragment implements MvpView {
 
 

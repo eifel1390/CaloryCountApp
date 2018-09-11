@@ -1,5 +1,19 @@
 package com.example.calorycountapp.Presenter;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.os.AsyncTask;
+
+import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.Model.Entity;
+import com.example.calorycountapp.Model.TemporaryEntity;
+import com.example.calorycountapp.View.DailyStatisticsFragment;
+import com.example.calorycountapp.View.MvpView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 public class DailyStatisticsPresenter extends PresenterBase  {
     private DailyStatisticsFragment fragment;
     private DB model;

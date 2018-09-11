@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.calorycountapp.Presenter.AddNewEntityPresenter;
 import com.example.calorycountapp.R;
 
 

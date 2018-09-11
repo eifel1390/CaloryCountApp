@@ -1,5 +1,7 @@
 package com.example.calorycountapp.View;
 
+import android.view.View;
+
 public interface MvpView {
     void initView();
     void initView(View v);

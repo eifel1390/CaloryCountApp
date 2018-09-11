@@ -4,6 +4,7 @@ package com.example.calorycountapp.Adapter;
 import android.content.Context;
 import android.view.ViewGroup;
 
+import com.example.calorycountapp.Model.Entity;
 import com.example.calorycountapp.R;
 
 public class CategoryDetailAdapter extends

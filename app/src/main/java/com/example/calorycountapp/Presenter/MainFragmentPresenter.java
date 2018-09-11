@@ -1,6 +1,13 @@
 package com.example.calorycountapp.Presenter;
 
 
+import android.content.Intent;
+
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.View.Category;
+import com.example.calorycountapp.View.MainFragment;
+import com.example.calorycountapp.View.MvpView;
+
 import java.util.Calendar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

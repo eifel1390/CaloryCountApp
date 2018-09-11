@@ -1,5 +1,17 @@
 package com.example.calorycountapp.Presenter;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.os.AsyncTask;
+
+import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.Database.NumberCaloryPreferences;
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.View.MvpView;
+import com.example.calorycountapp.View.Property;
+
+import java.util.concurrent.ExecutionException;
+
 public class PropertyPresenter extends PresenterBase {
 
     private Property activity;
@@ -74,7 +86,7 @@ public class PropertyPresenter extends PresenterBase {
         private DB db;
         private String entityType;
 
-        GetProductCaloryTask (com.example.calorycalculator.database.DB db,String entityType){
+        GetProductCaloryTask (DB db,String entityType){
             this.db = db;
             this.entityType = entityType;
         }

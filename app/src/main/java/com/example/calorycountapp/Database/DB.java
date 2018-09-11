@@ -1,5 +1,16 @@
 package com.example.calorycountapp.Database;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.calorycountapp.Model.Active;
+import com.example.calorycountapp.Model.Product;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DB {
 
     private final Context mCtx;

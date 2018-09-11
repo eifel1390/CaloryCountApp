@@ -1,5 +1,11 @@
 package com.example.calorycountapp.Presenter;
 
+import android.os.AsyncTask;
+
+import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.View.AddNewEntity;
+
 public class AddNewEntityPresenter  extends PresenterBase {
 
     private AddNewEntity activity;

@@ -10,6 +10,18 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.Database.NumberCaloryPreferences;
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.ItemTouchHelperClass;
+import com.example.calorycountapp.Model.Entity;
+import com.example.calorycountapp.Model.TemporaryEntity;
+import com.example.calorycountapp.R;
+import com.example.calorycountapp.View.DailyStatisticsFragment;
+
+import java.util.Collections;
+import java.util.List;
+
 public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRecyclerObjectClickListener<Entity>,
         DailyStatisticsViewHolder> implements ItemTouchHelperClass.ItemTouchHelperAdapter {
 
@@ -20,7 +32,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
     private TemporaryDeleteDataTask task;
     private DB db;
     private CoordinatorLayout coordinatorLayout;
-    private List<Entity>items;
+    private List<Entity> items;
     private int result;
 
     public DailyStatisticsAdapter(Context context, DailyStatisticsFragment fragment,CoordinatorLayout layout) {

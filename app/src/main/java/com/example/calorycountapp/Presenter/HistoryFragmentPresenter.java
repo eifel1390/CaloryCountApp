@@ -1,5 +1,22 @@
 package com.example.calorycountapp.Presenter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.Database.MediumCaloriesPreferences;
+import com.example.calorycountapp.Database.NumberCaloryPreferences;
+import com.example.calorycountapp.View.HistoryFragment;
+import com.example.calorycountapp.View.MvpView;
+
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.ExecutionException;
+
 public class HistoryFragmentPresenter extends PresenterBase  {
 
     private HistoryFragment fragment;

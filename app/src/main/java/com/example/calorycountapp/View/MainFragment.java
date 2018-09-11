@@ -1,5 +1,19 @@
 package com.example.calorycountapp.View;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.example.calorycountapp.Database.NumberCaloryPreferences;
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.Presenter.MainFragmentPresenter;
+import com.example.calorycountapp.R;
+
 public class MainFragment extends Fragment implements MvpView, View.OnClickListener {
 
     private Button toProduct, toActive;

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="primary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="primary_dark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="pink">#ffcccc</color>
+    <color name="lightBlue">#ccccff</color>
+    <color name="tab_strip">#ccccff</color>
+    <color name="diagram_shortfall_limit">#FFFF00</color>
+    <color name="limit">#32CD32</color>
+    <color name="over_limit">#FF0000</color>
 </resources>

@@ -5,6 +5,20 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 
+import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.Model.Active;
+import com.example.calorycountapp.Model.Entity;
+import com.example.calorycountapp.Model.Product;
+import com.example.calorycountapp.View.AddNewEntity;
+import com.example.calorycountapp.View.CategoryDetail;
+import com.example.calorycountapp.View.MvpView;
+import com.example.calorycountapp.View.Property;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 
 public class CategoryDetailPresenter extends PresenterBase {
 

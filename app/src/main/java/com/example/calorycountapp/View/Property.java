@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.Presenter.PropertyPresenter;
+import com.example.calorycountapp.R;
+
 
 public class Property extends AppCompatActivity implements MvpView,View.OnClickListener {
 

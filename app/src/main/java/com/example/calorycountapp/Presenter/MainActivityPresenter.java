@@ -1,5 +1,19 @@
 package com.example.calorycountapp.Presenter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+
+import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.Database.NumberCaloryPreferences;
+import com.example.calorycountapp.View.MainActivity;
+import com.example.calorycountapp.View.MvpView;
+import com.example.calorycountapp.View.SettingsActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class MainActivityPresenter extends PresenterBase {
 
     private MainActivity mainActivity;

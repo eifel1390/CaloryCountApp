@@ -12,6 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.astuetz.PagerSlidingTabStrip;
+import com.example.calorycountapp.Adapter.TabsAdapter;
+import com.example.calorycountapp.LocaleHelper;
+import com.example.calorycountapp.Presenter.MainActivityPresenter;
 import com.example.calorycountapp.R;
 import com.example.calorycountapp.View.MainFragment;
 

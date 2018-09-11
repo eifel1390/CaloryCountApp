@@ -1,5 +1,7 @@
 package com.example.calorycountapp.Presenter;
 
+import com.example.calorycountapp.View.MvpView;
+
 public abstract class PresenterBase<T extends MvpView> implements MvpPresenter<T> {
 
     private T view;

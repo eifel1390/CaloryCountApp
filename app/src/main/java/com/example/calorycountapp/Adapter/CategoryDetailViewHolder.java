@@ -1,6 +1,13 @@
 package com.example.calorycountapp.Adapter;
 
+import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
+
+import com.example.calorycountapp.Model.Active;
+import com.example.calorycountapp.Model.Entity;
+import com.example.calorycountapp.Model.Product;
+import com.example.calorycountapp.R;
 
 public class CategoryDetailViewHolder extends
         BaseViewHolder<Entity, OnRecyclerObjectClickListener<Entity>> {

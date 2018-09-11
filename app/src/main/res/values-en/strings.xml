@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="fill_all_fields_message">Please, adding all fields</string>
+    <string name="will_be_credited">You get </string>
+    <string name="calories"> caloryes</string>
+    <string name="will_be_charged">You loose </string>
+    <string name="your_limit">Your limit </string>
+    <string name="medium_calory_in_day">Medium in day </string>
+    <string name="history">History</string>
+    <string name="main_page">Main</string>
+    <string name="today">Today</string>
+
+</resources>

@@ -1,3 +1,74 @@
 <resources>
     <string name="app_name">CaloryCountApp</string>
+    <string name="there_are_still">Осталось</string>
+
+    <string name="app_settings">Настройки</string>
+    <string name="empty_number">0</string>
+    <string name="button_minus_text">-</string>
+    <string name="button_plus_text">+</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="containsInOneHungred">Содержит в 100 граммах</string>
+    <string name="plusTwentyGramm">+ 20 грамм</string>
+    <string name="plusOneHungredGramm">+ 100 грамм</string>
+    <string name="minusTwentyGramm">- 20 грамм</string>
+    <string name="minusOneHungredGramm">- 100 грамм</string>
+    <string name="costInSexteenMinute">Сжигает за 60 минут</string>
+    <string name="plusFiveMinute">+ 5 минут</string>
+    <string name="plusHalfHour">+ 30 минут</string>
+    <string name="minusFiveMinute">- 5 минут</string>
+    <string name="minusHalfHour">- 30 минут</string>
+    <string name="fill_all_fields_message">Пожалуйста,заполните все поля</string>
+    <string name="will_be_credited">Будет начислено </string>
+    <string name="calories"> калорий</string>
+    <string name="will_be_charged">Будет списано </string>
+    <string name="history">История</string>
+    <string name="main_page">Главная</string>
+    <string name="today">Сегодня</string>
+    <string name="receive_calory">Потреблено</string>
+    <string name="your_limit">Ваш установленный лимит </string>
+    <string name="medium_calory_in_day">Середнее потребление калорий в день </string>
+
+    <string-array name="entries">
+        <item>Похудение</item>
+        <item>Поддержание веса</item>
+        <item>Набор веса</item>
+    </string-array>
+    <string-array name="entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Русский</item>
+    </string-array>
+
+
+
+    <string-array name="clear_history">
+        <item>Очистить историю</item>
+    </string-array>
+
+    <string-array name="entry_languages">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="entry_clear_history">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
+
+    <string-array name="entry_gender">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>
