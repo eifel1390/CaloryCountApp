@@ -14,7 +14,7 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/for_tab_and_toolbar"
         android:textColor="@color/white"
         android:elevation="4dp"
         app:pstsIndicatorColor="@color/tab_strip"

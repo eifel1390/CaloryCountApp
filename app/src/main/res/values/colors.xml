@@ -10,6 +10,7 @@
     <color name="lightBlue">#ccccff</color>
     <color name="tab_strip">#ccccff</color>
     <color name="diagram_shortfall_limit">#FFFF00</color>
+    <color name="for_tab_and_toolbar">#1E90FF</color>
     <color name="limit">#32CD32</color>
     <color name="over_limit">#FF0000</color>
 </resources>

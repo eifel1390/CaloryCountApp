@@ -1,5 +1,7 @@
 package com.example.calorycountapp.View;
 
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.calorycountapp.CaloryLevelButton;
 import com.example.calorycountapp.Database.NumberCaloryPreferences;
 import com.example.calorycountapp.EntityIdent;
 import com.example.calorycountapp.Presenter.MainFragmentPresenter;
@@ -17,7 +20,7 @@ import com.example.calorycountapp.R;
 public class MainFragment extends Fragment implements MvpView, View.OnClickListener {
 
     private Button toProduct, toActive;
-    private TextView caloryNumberPerDay;
+    private CaloryLevelButton caloryNumberPerDay;
     private MainFragmentPresenter presenter;
     private int calory;
 
@@ -56,8 +59,13 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
         toProduct.setOnClickListener(this);
         toActive = (Button) v.findViewById(R.id.minus);
         toActive.setOnClickListener(this);
-        caloryNumberPerDay = (TextView) v.findViewById(R.id.number_of_calories);
-        caloryNumberPerDay.setText(String.valueOf(calory));
+        caloryNumberPerDay = (CaloryLevelButton) v.findViewById(R.id.number_of_calories);
+        caloryNumberPerDay.setLabelText(String.valueOf(calory));
+        caloryNumberPerDay.setCircleColor(Color.rgb(152,251,152));
+        caloryNumberPerDay.setLabelColor(Color.BLUE);
+
+        //caloryNumberPerDay.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
     }
 
     //инициализация презентера
@@ -74,10 +82,10 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
         super.onResume();
         if(NumberCaloryPreferences.getStoredCalory(getContext())!=0) {
             calory = NumberCaloryPreferences.getStoredCalory(getContext());
-            caloryNumberPerDay.setText(String.valueOf(calory));
+            caloryNumberPerDay.setLabelText(String.valueOf(calory));
         }
         if(NumberCaloryPreferences.getStoredCalory(getContext())==0) {
-            caloryNumberPerDay.setText(String.valueOf(0));
+            caloryNumberPerDay.setLabelText(String.valueOf(0));
         }
     }
 
@@ -106,7 +114,7 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
     //то соответственно нужно или уменьшить или увеличить количество калорий
     protected void displayReceivedData(int calory)
     {
-        caloryNumberPerDay.setText(String.valueOf(calory));
+        caloryNumberPerDay.setLabelText(String.valueOf(calory));
     }
 
     @Override

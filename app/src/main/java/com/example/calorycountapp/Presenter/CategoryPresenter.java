@@ -1,15 +1,19 @@
 package com.example.calorycountapp.Presenter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 
 import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.EntityIdent;
 import com.example.calorycountapp.Model.Active;
 import com.example.calorycountapp.Model.Entity;
 import com.example.calorycountapp.Model.Product;
+import com.example.calorycountapp.R;
 import com.example.calorycountapp.View.Category;
 import com.example.calorycountapp.View.CategoryDetail;
 import com.example.calorycountapp.View.MvpView;
@@ -23,11 +27,14 @@ public class CategoryPresenter extends PresenterBase {
     private Category category;
     private DB model;
     private Context context;
+    private SharedPreferences sp;
+
 
     public CategoryPresenter(MvpView mvpView) {
         this.category = (Category)mvpView;
         this.context = category;
         model = new DB(context);
+        sp = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     //в момент включения фрагмент запрашивает данные либо по продуктам либо по активностям
@@ -39,10 +46,21 @@ public class CategoryPresenter extends PresenterBase {
         }
 
         if(ident.equals(EntityIdent.IS_ACTIVE)) {
+
+            //проверка введен ли вес
+            if(sp.getString("enterWeight","").length()==0){
+                //фрагмент должен показать диалог с просьбой ввести вес
+                category.prepareWeightDialog();
+
+
+            }
+
             LoadCategoryListTask task = new LoadCategoryListTask(model,EntityIdent.IS_ACTIVE);
             showDataInView(task);
         }
     }
+
+
 
     //отображение полученных данных во вью Category
     public void showDataInView(LoadCategoryListTask task){

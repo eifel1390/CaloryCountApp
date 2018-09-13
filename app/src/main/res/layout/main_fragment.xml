@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/com.example.calorycountapp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -14,46 +14,75 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFAFA"
         android:paddingLeft="16dp"
         android:paddingRight="16dp" >
 
-        <TextView
-            android:id="@+id/there_are_still"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+       <!--
+        <Button
+            android:id="@+id/number_of_calories"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:background="@drawable/textview_calory_number"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="40dp"
-            android:textSize="35sp"
-            android:text="Потреблено"/>
+            android:textSize="45sp"
+            android:text="0"/>
+            -->
 
-        <TextView
+        <!--
+        <Button
             android:id="@+id/number_of_calories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/there_are_still"
-            android:textSize="45sp"/>
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textSize="45sp"
+            android:text="0" />
+            -->
+        
+        <com.example.calorycountapp.CaloryLevelButton
+            android:id="@+id/number_of_calories"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
+            custom:circleColor="#ff0099"
+            custom:circleLabel="Hello"
+            custom:labelColor="#ffff66"
+            android:layout_width="170dp"
+            android:layout_height="170dp" />
+
+
+
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/button_bg_round"
+            android:padding="15dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:id="@+id/minus"
-            android:text="@string/button_minus_text"
             android:layout_marginBottom="40dp"
             android:layout_marginLeft="15dp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/button_lg_round"
             android:layout_alignTop = "@+id/minus"
+            android:padding="15dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
-            android:id="@+id/plus"
-            android:text="@string/button_plus_text"
-            />
+            android:id="@+id/plus" />
 
     </RelativeLayout>
 </RelativeLayout>

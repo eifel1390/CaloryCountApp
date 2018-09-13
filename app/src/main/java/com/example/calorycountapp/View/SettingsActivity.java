@@ -71,7 +71,6 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         @Override
         protected Void doInBackground(Void... voids) {
             if(model.getAllDataFromHistoryDatabase()!=null) {
-                Log.d("testing","cursor is not null");
                 model.deleteAllFromHistoryDatabase();
 
             }

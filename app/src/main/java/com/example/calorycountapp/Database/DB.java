@@ -174,6 +174,25 @@ public class DB {
         productList.add(new Product("Виски","Алкоголь",235));
         productList.add(new Product("Водка","Алкоголь",235));
         productList.add(new Product("Вино красное сухое","Алкоголь",68));
+        productList.add(new Product("Пончик с шоколадом","Сладости",452));
+        productList.add(new Product("Батон нарезной","Хлеб и выпечка",262));
+        productList.add(new Product("Щука","Рыба и морепродукты",84));
+        productList.add(new Product("Сливочное масло","Масло",717));
+        productList.add(new Product("Гречка","Крупы",343));
+        productList.add(new Product("Тунец в масле","Консервы",190));
+        productList.add(new Product("Чипсы","Снеки",536));
+        productList.add(new Product("Томатный соус","Соусы и приправы",29));
+        productList.add(new Product("Говядина отварная","Мясо",254));
+        productList.add(new Product("Молоко 1% жирности","Молоко",42));
+        productList.add(new Product("Пармезан","Сыры",431));
+        productList.add(new Product("Апельсиновый сок","Соки",45));
+        productList.add(new Product("Шампиньоны","Грибы",27));
+        productList.add(new Product("Грецкий орех","Орехи",654));
+        productList.add(new Product("Салями финская","Колбаса и копчености",502));
+        productList.add(new Product("Яйцо вареное","Яйца",155));
+        productList.add(new Product("Петрушка","Зелень",36));
+
+
 
         ContentValues cv = new ContentValues();
         for(int i=0;i< productList.size();i++){
