@@ -118,11 +118,9 @@ public class HistoryFragmentPresenter extends PresenterBase  {
 
     public void countingMediumValue(){
         int historySize = MediumCaloriesPreferences.getHistorySize(context);
-        Log.d("historyTest",String.valueOf(historySize));
         int quantityCalory = NumberCaloryPreferences.getConstantCalory(context);
-        Log.d("historyTest",String.valueOf(quantityCalory));
+
         if(historySize!=0) {
-            Log.d("historyTest",String.valueOf(quantityCalory / historySize));
             fragment.showMediumValue(quantityCalory / historySize);
         }
         else fragment.showMediumValue(0);
@@ -130,10 +128,10 @@ public class HistoryFragmentPresenter extends PresenterBase  {
 
     private void checkLimit(){
 
-        String message = NumberCaloryPreferences.getSettingsIdent(context);
+        //String message = NumberCaloryPreferences.getSettingsIdent(context);
 
         if(message!=null) {
-            if (message.equals("calculateByHelper")) {
+            /*if (message.equals("calculateByHelper")) {
 
                 if(sp.getString("screen_gender","").length()>0&&sp.getString("enterAge","").length()>0&&sp.getString("enterWeight","").length()>0&&
                         sp.getString("enterHeight","").length()>0&&sp.getString("list","не выбрано").length()>0) {
@@ -145,7 +143,7 @@ public class HistoryFragmentPresenter extends PresenterBase  {
                     String  purpose = sp.getString("list", "не выбрано");
                     NumberCaloryPreferences.setLimitCalory(context, calculateDailyLimit(gender, age, weight, height, purpose));
                 }
-            }
+            }*/
 
             if (message.equals("calculateByUser")) {
 

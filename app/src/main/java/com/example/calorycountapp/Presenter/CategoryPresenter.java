@@ -27,14 +27,14 @@ public class CategoryPresenter extends PresenterBase {
     private Category category;
     private DB model;
     private Context context;
-    private SharedPreferences sp;
+
 
 
     public CategoryPresenter(MvpView mvpView) {
         this.category = (Category)mvpView;
         this.context = category;
         model = new DB(context);
-        sp = PreferenceManager.getDefaultSharedPreferences(context);
+
     }
 
     //в момент включения фрагмент запрашивает данные либо по продуктам либо по активностям
@@ -46,14 +46,6 @@ public class CategoryPresenter extends PresenterBase {
         }
 
         if(ident.equals(EntityIdent.IS_ACTIVE)) {
-
-            //проверка введен ли вес
-            if(sp.getString("enterWeight","").length()==0){
-                //фрагмент должен показать диалог с просьбой ввести вес
-                category.prepareWeightDialog();
-
-
-            }
 
             LoadCategoryListTask task = new LoadCategoryListTask(model,EntityIdent.IS_ACTIVE);
             showDataInView(task);

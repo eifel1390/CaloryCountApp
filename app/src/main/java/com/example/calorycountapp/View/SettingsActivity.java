@@ -22,14 +22,14 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
-        clearPreviousInput();
+        //clearPreviousInput();
         Preference pref = findPreference("clear_history");
         pref.setOnPreferenceClickListener(this);
 
     }
 
 
-    public void clearPreviousInput(){
+    /*public void clearPreviousInput(){
         ListPreference genderPref = (ListPreference) findPreference("screen_gender");
         EditTextPreference agePref = (EditTextPreference)findPreference("enterAge");
         EditTextPreference weightPref = (EditTextPreference)findPreference("enterWeight");
@@ -44,7 +44,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         purposePref.setValue("");
         languagePref.setValue("");
         enterCaloryPref.setText("");
-    }
+    }*/
 
     @Override
     public boolean onPreferenceClick(Preference preference) {

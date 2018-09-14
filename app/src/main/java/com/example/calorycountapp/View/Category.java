@@ -29,15 +29,15 @@ import java.util.List;
 public class Category extends AppCompatActivity implements CategoryView,OnRecyclerObjectClickListener<Entity> {
 
     public static final String ENTITY_IDENT = "entity_ident";
-    private final String DIALOG_WEIGHT = "dialog_weight";
+    //private final String DIALOG_WEIGHT = "dialog_weight";
 
     private RecyclerView recyclerView;
     private CategoryAdapter adapter;
     private CategoryPresenter presenter;
     private String ident;
-    private Dialog dialog;
-    private Button okButton;
-    private EditText weightEditText;
+    //private Dialog dialog;
+    //private Button okButton;
+    //private EditText weightEditText;
 
 
     @Override
@@ -101,7 +101,7 @@ public class Category extends AppCompatActivity implements CategoryView,OnRecycl
     @Override
     public void initToolbar(View v) {}
 
-    public void prepareWeightDialog(){
+    /*public void prepareWeightDialog(){
         dialog = new Dialog(this);
 
         dialog.setContentView(R.layout.weight_dialog);
@@ -122,7 +122,7 @@ public class Category extends AppCompatActivity implements CategoryView,OnRecycl
 
         dialog.show();
 
-    }
+    }*/
 
 
 }
