@@ -32,6 +32,27 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.42" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/desc_padding"
+        android:paddingRight="@dimen/desc_padding"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
+
+        <EditText
+            android:layout_width="168dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:id="@+id/editTextWeight" />
+
+    </LinearLayout>
+
+
+    <!--
     <Button
         android:text="OK"
         android:layout_width="92dp"
@@ -46,6 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextWeight"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp" />
+        -->
 
 
 </android.support.constraint.ConstraintLayout>

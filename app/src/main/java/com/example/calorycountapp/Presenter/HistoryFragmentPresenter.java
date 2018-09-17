@@ -26,7 +26,7 @@ public class HistoryFragmentPresenter extends PresenterBase  {
 
 
 
-    SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+    /*SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
             if (key.equals("enterCaloryLimit")) {
                 NumberCaloryPreferences.setSettingsIdent(context,"calculateByUser");
@@ -37,14 +37,14 @@ public class HistoryFragmentPresenter extends PresenterBase  {
                 NumberCaloryPreferences.setSettingsIdent(context,"calculateByHelper");
             }
         }
-    };
+    };*/
 
     public HistoryFragmentPresenter(MvpView view) {
         fragment = (HistoryFragment)view;
         this.context = fragment.getContext();
         db = new DB(context);
         sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.registerOnSharedPreferenceChangeListener(listener);
+        //sp.registerOnSharedPreferenceChangeListener(listener);
     }
 
     @Override
@@ -118,11 +118,9 @@ public class HistoryFragmentPresenter extends PresenterBase  {
 
     public void countingMediumValue(){
         int historySize = MediumCaloriesPreferences.getHistorySize(context);
-        Log.d("historyTest",String.valueOf(historySize));
         int quantityCalory = NumberCaloryPreferences.getConstantCalory(context);
-        Log.d("historyTest",String.valueOf(quantityCalory));
+
         if(historySize!=0) {
-            Log.d("historyTest",String.valueOf(quantityCalory / historySize));
             fragment.showMediumValue(quantityCalory / historySize);
         }
         else fragment.showMediumValue(0);
@@ -130,10 +128,13 @@ public class HistoryFragmentPresenter extends PresenterBase  {
 
     private void checkLimit(){
 
-        String message = NumberCaloryPreferences.getSettingsIdent(context);
+        //проверка лимита
 
-        if(message!=null) {
-            if (message.equals("calculateByHelper")) {
+
+        //String message = NumberCaloryPreferences.getSettingsIdent(context);
+
+        //if(message!=null) {
+            /*if (message.equals("calculateByHelper")) {
 
                 if(sp.getString("screen_gender","").length()>0&&sp.getString("enterAge","").length()>0&&sp.getString("enterWeight","").length()>0&&
                         sp.getString("enterHeight","").length()>0&&sp.getString("list","не выбрано").length()>0) {
@@ -145,20 +146,20 @@ public class HistoryFragmentPresenter extends PresenterBase  {
                     String  purpose = sp.getString("list", "не выбрано");
                     NumberCaloryPreferences.setLimitCalory(context, calculateDailyLimit(gender, age, weight, height, purpose));
                 }
-            }
+            }*/
 
-            if (message.equals("calculateByUser")) {
+            //if (message.equals("calculateByUser")) {
 
-                int userCalory = 0;
-                if(sp.getString("enterCaloryLimit", "").length()>0) {
-                    userCalory = Integer.parseInt(sp.getString("enterCaloryLimit", ""));
-                }
-                NumberCaloryPreferences.setLimitCalory(context, userCalory);
-            }
+            //    int userCalory = 0;
+            //    if(sp.getString("enterCaloryLimit", "").length()>0) {
+            //        userCalory = Integer.parseInt(sp.getString("enterCaloryLimit", ""));
+            //    }
+            //    NumberCaloryPreferences.setLimitCalory(context, userCalory);
+            //}
         }
 
-        fragment.showLimit(NumberCaloryPreferences.getLimitCalory(context));
-    }
+        //fragment.showLimit(NumberCaloryPreferences.getLimitCalory(context));
+    //}
 
     private int calculateDailyLimit(String gender,int age,int weight,int height,String purpose){
 

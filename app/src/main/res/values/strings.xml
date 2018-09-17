@@ -3,7 +3,9 @@
     <string name="there_are_still">Осталось</string>
 
     <string name="app_settings">Настройки</string>
+    <string name="next">ВПЕРЕД</string>
     <string name="empty_number">0</string>
+    <string name="start">СТАРТ</string>
     <string name="button_minus_text">-</string>
     <string name="button_plus_text">+</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

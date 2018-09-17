@@ -10,5 +10,6 @@
     <string name="history">History</string>
     <string name="main_page">Main</string>
     <string name="today">Today</string>
+    <string name="next">NEXT</string>
 
 </resources>
