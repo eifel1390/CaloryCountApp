@@ -39,7 +39,7 @@
                 android:inputType="number"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:id="@+id/editTextWeight" />
+                android:id="@+id/editTextHeight" />
 
         </LinearLayout>
 

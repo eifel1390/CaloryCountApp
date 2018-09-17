@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IntroActivity">
+
+        <activity android:name=".IntroActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,6 +17,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".View.ResultScreenActivity"/>
         <activity android:name=".View.MainActivity"/>
         <activity android:name=".View.Category" android:parentActivityName=".View.MainActivity"/>
         <activity android:name=".View.CategoryDetail" android:parentActivityName=".View.Category"/>

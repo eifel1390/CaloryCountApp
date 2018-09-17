@@ -34,29 +34,35 @@
             android:paddingRight="@dimen/desc_padding"
             android:orientation="vertical">
 
-            <RadioButton
-                android:text="Мужской"
+            <RadioGroup
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:shadowColor="@color/white"
-                android:buttonTint="#e75748"
-                android:id="@+id/radioButtonM" />
+                android:id="@+id/RGroup">
 
-            <RadioButton
-                android:text="Женский"
-                android:layout_marginTop="25dp"
-                android:layout_width="wrap_content"
-                android:textColor="@color/white"
-                android:shadowColor="@color/white"
-                android:buttonTint="#e75748"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:id="@+id/radioButtonW" />
+                <RadioButton
+                    android:text="Мужской"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:shadowColor="@color/white"
+                    android:buttonTint="#e75748"
+                    android:id="@+id/radioButtonM" />
+
+                <RadioButton
+                    android:text="Женский"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/white"
+                    android:buttonTint="#e75748"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButtonW" />
+
+            </RadioGroup>
 
 
 

@@ -25,7 +25,6 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         //clearPreviousInput();
         Preference pref = findPreference("clear_history");
         pref.setOnPreferenceClickListener(this);
-
     }
 
 
@@ -46,6 +45,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         enterCaloryPref.setText("");
     }*/
 
+    //кнопка очистить историю
     @Override
     public boolean onPreferenceClick(Preference preference) {
         NumberCaloryPreferences.setLimitCalory(getApplication(), 0);

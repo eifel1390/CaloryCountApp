@@ -45,11 +45,9 @@ public class MainActivity extends AppCompatActivity implements MvpView, DailySta
     protected void onResume() {
         String listValue = sp.getString("languages_list", "язык не выбран");
         if(listValue.equals("1")){
-            Log.d("languageTest",listValue);
             LocaleHelper.setLocale(getApplication(), "en");
         }
         if(listValue.equals("2")){
-            Log.d("languageTest",listValue);
             LocaleHelper.setLocale(getApplication(), "ru");
         }
         super.onResume();

@@ -34,42 +34,47 @@
             android:paddingRight="@dimen/desc_padding"
             android:orientation="vertical">
 
-            <RadioButton
-                android:text="Сбросить вес"
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:shadowColor="@color/white"
-                android:buttonTint="#e75748"
-                android:id="@+id/looseWeight" />
+                android:id="@+id/RGroup">
 
-            <RadioButton
-                android:text="Поддерживать вес"
-                android:layout_marginTop="25dp"
-                android:layout_width="wrap_content"
-                android:textColor="@color/white"
-                android:shadowColor="@color/white"
-                android:buttonTint="#e75748"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:id="@+id/currentWeight" />
+                <RadioButton
+                    android:text="Сбросить вес"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:shadowColor="@color/white"
+                    android:buttonTint="#e75748"
+                    android:id="@+id/looseWeight" />
 
-            <RadioButton
-                android:text="Набрать вес"
-                android:layout_marginTop="25dp"
-                android:layout_width="wrap_content"
-                android:textColor="@color/white"
-                android:shadowColor="@color/white"
-                android:buttonTint="#e75748"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:id="@+id/takeWeight" />
+                <RadioButton
+                    android:text="Поддерживать вес"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/white"
+                    android:buttonTint="#e75748"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveWeight" />
 
+                <RadioButton
+                    android:text="Набрать вес"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/white"
+                    android:buttonTint="#e75748"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/takeWeight" />
 
+            </RadioGroup>
 
         </LinearLayout>
 

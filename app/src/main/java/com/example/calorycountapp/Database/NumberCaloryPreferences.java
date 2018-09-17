@@ -9,7 +9,7 @@ public class NumberCaloryPreferences {
     private static final String CONSTANT_CALORY = "constant_calory";
     private static final String LIMIT_CALORY = "limit_calory";
     private static final String SETTINGS_IDENT = "settings_ident";
-    private static final String USER_WEIGHT = "user_weight";
+
     private static final String TAG = "counter";
 
     public static int getStoredCalory(Context context){
@@ -38,12 +38,14 @@ public class NumberCaloryPreferences {
                 .apply();
     }
 
+    //вернуть лимит калорий
     public static int getLimitCalory(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(LIMIT_CALORY,0);
     }
 
 
+    //задать лимит калорий
     public static void setLimitCalory(Context context,int value) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
@@ -64,16 +66,5 @@ public class NumberCaloryPreferences {
                 .apply();
     }
 
-    public static String getUserWeight(Context context){
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(USER_WEIGHT,null);
-    }
 
-
-    public static void setUserWeight(Context context,String weight) {
-        PreferenceManager.getDefaultSharedPreferences(context)
-                .edit()
-                .putString(USER_WEIGHT,weight)
-                .apply();
-    }
 }
