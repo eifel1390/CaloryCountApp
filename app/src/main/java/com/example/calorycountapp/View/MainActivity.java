@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements MvpView, DailySta
     public void initView() {
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new TabsAdapter(getSupportFragmentManager(),this));
+        pager.setCurrentItem(0);
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(pager);
     }

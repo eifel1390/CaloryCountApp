@@ -3,18 +3,22 @@ package com.example.calorycountapp.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.calorycountapp.Adapter.CategoryDetailAdapter;
 import com.example.calorycountapp.Adapter.OnRecyclerObjectClickListener;
 import com.example.calorycountapp.EntityIdent;
+import com.example.calorycountapp.ItemTouchHelperClass;
 import com.example.calorycountapp.Model.Active;
 import com.example.calorycountapp.Model.Entity;
 import com.example.calorycountapp.Model.Product;
@@ -32,7 +36,9 @@ public class CategoryDetail extends AppCompatActivity implements CategoryView,On
     private CategoryDetailAdapter adapter;
     private CategoryDetailPresenter presenter;
     private String category, entityIdent;
+    private ItemTouchHelper itemTouchHelper;
     private FloatingActionButton floatingActionButton;
+    private CoordinatorLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,11 +55,18 @@ public class CategoryDetail extends AppCompatActivity implements CategoryView,On
     @Override
     public void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.category_detail_RecyclerView);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.floating_action_button);
-        adapter = new CategoryDetailAdapter(this);
-        adapter.setListener(this);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.floating_action_button);
+        layout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+        adapter = new CategoryDetailAdapter(this,layout);
+        adapter.setListener(this);
+        ItemTouchHelper.Callback callback = new ItemTouchHelperClass(adapter);
+        itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+        recyclerView.setAdapter(adapter);
+
         //hyde floatbutton when user scrolling recyclerview
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

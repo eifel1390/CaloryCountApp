@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.calorycountapp.Model.Active;
 import com.example.calorycountapp.Model.Product;
+import com.example.calorycountapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,8 @@ public class DB {
         return database.query(DB.Table.TABLE_NAME_PRODUCT, null, null, null, null, null, null);
     }
 
+
+
     public Cursor getAllDataFromActive() {
         return database.query(DB.Table.TABLE_NAME_ACTIVE, null, null, null, null, null, null);
     }
@@ -56,7 +59,7 @@ public class DB {
 
     public Cursor getCategoryProduct(){
         String[]args = {DB.Table.CATEGORY_PRODUCT};
-        return database.query(true,DB.Table.TABLE_NAME_PRODUCT,args,null,null,null,null,null,null);
+        return database.query(true, DB.Table.TABLE_NAME_PRODUCT,args,null,null,null,null,null,null);
     }
 
     public Cursor getCategoryActive(){
@@ -79,8 +82,6 @@ public class DB {
         return database.query(Table.TABLE_NAME_ACTIVE,columns,"active_category = ?",
                 new String[]{categoryName},null,null,null);
     }
-
-
 
     public Cursor getCaloryForProduct(String product){
         String [] columns = {Table.CALORICITY_PRODUCT};
@@ -133,6 +134,13 @@ public class DB {
         database.insert(Table.TABLE_HISTORY_NAME,null,cv);
     }
 
+    public void deleteProductFromDatabase(String productName){
+        database.delete(Table.TABLE_NAME_PRODUCT,"product_name = ?",new String[]{productName});
+    }
+
+    public void deleteActiveFromDatabase(String activeName){
+        database.delete(Table.TABLE_NAME_ACTIVE,"active_name = ?",new String[]{activeName});
+    }
 
 
     public void deleteEntityFromTemporaryDatabase(String entityName){
@@ -153,9 +161,9 @@ public class DB {
     private void fillProductDatabaseOnDefault(SQLiteDatabase db){
 
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product("Банан","Фрукты",95));
-        productList.add(new Product("Яблоко","Фрукты",47));
-        productList.add(new Product("Груша","Фрукты",95));
+        productList.add(new Product("Банан", mCtx.getString(R.string.fruits_string),95));
+        productList.add(new Product("Яблоко",mCtx.getString(R.string.fruits_string),47));
+        productList.add(new Product("Груша",mCtx.getString(R.string.fruits_string),95));
         productList.add(new Product("Огурец","Овощи",15));
         productList.add(new Product("Помидор","Овощи",20));
         productList.add(new Product("Лук репчатый","Овощи",47));
@@ -207,23 +215,41 @@ public class DB {
     private void fillActiveDatabaseOnDefault(SQLiteDatabase db){
 
         List<Active> activeList = new ArrayList<>();
-        activeList.add(new Active("Бег трусцой","Фитнесс",609));
-        activeList.add(new Active("Подтягивания","Фитнесс",302));
-        activeList.add(new Active("Тренажерный зал","Фитнесс",223));
-        activeList.add(new Active("Плаванье","Фитнесс",445));
-        activeList.add(new Active("Езда на велосипеде","Фитнесс",592));
-        activeList.add(new Active("Бокс","Фитнесс",664));
-        activeList.add(new Active("Бармен","Работа",184));
-        activeList.add(new Active("Офис","Работа",87));
-        activeList.add(new Active("Пекарня","Работа",302));
-        activeList.add(new Active("Массажист","Работа",294));
-        activeList.add(new Active("Монтажник","Работа",454));
-        activeList.add(new Active("Вязание","Отдых,развлечения",46));
-        activeList.add(new Active("Игра на гитаре","Отдых,развлечения",101));
-        activeList.add(new Active("Игры с животными","Отдых,развлечения",150));
-        activeList.add(new Active("Просмотр телевизора","Отдых,развлечения",55));
-        activeList.add(new Active("Разговор по телефону сидя","Отдых,развлечения",50));
-        activeList.add(new Active("Секс","Отдых,развлечения",152));
+
+
+        activeList.add(new Active("Бег (8 км/ч)","Бег и ходьба",346));
+        activeList.add(new Active("Бег (10 км/ч)","Бег и ходьба",450));
+        activeList.add(new Active("Бег (16 км/ч)","Бег и ходьба",536));
+        activeList.add(new Active("Бег вверх по ступенькам","Бег и ходьба",643));
+        activeList.add(new Active("Бег вверх и вниз по ступенькам","Бег и ходьба",386));
+        activeList.add(new Active("Бег по пересеченной местности","Бег и ходьба",429));
+        activeList.add(new Active("Скоростной бег на коньках","Бег и ходьба",550));
+        activeList.add(new Active("Пеший туризм (3,2 км/ч)","Бег и ходьба",107));
+        activeList.add(new Active("Пеший туризм (4 км/ч)","Бег и ходьба",168));
+        activeList.add(new Active("Ходьба (4 км/ч)","Бег и ходьба",129));
+        activeList.add(new Active("Ходьба (6 км/ч)","Бег и ходьба",193));
+        activeList.add(new Active("Спортивная ходьба","Бег и ходьба",297));
+        activeList.add(new Active("Прогулка с коляской","Бег и ходьба",108));
+        activeList.add(new Active("Прогулка с детьми в парке","Бег и ходьба",179));
+        activeList.add(new Active("Прогулка с собакой","Бег и ходьба",143));
+        activeList.add(new Active("Пешая прогулка с семьей","Бег и ходьба",72));
+        activeList.add(new Active("Пешая прогулка (4,2 км/ч)","Бег и ходьба",157));
+        activeList.add(new Active("Пешая прогулка (5,8 км/ч)","Бег и ходьба",225));
+
+        activeList.add(new Active("Волейбол","Командные виды спорта",182));
+        activeList.add(new Active("Гандбол","Командные виды спорта",346));
+        activeList.add(new Active("Футбол","Командные виды спорта",321));
+        activeList.add(new Active("Баскетбол","Командные виды спорта",271));
+        activeList.add(new Active("Хоккей","Командные виды спорта",350));
+
+        activeList.add(new Active("Занятия балетом","Танцы",536));
+        activeList.add(new Active("Бальные танцы","Танцы",196));
+        activeList.add(new Active("Танцы высокой интенсивности","Танцы",346));
+        activeList.add(new Active("Танцы низкой интенсивности","Танцы",154));
+        activeList.add(new Active("Танцы в ритме диско","Танцы",346));
+        activeList.add(new Active("Танцы диско","Танцы",286));
+        activeList.add(new Active("Танцы современные","Танцы",229));
+        activeList.add(new Active("Танцы медленные (вальс, танго)","Танцы",143));
 
         ContentValues cv = new ContentValues();
         for(int i=0;i< activeList.size();i++){

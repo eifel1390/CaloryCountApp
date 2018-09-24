@@ -87,7 +87,7 @@ public class CategoryDetailPresenter extends PresenterBase {
         private DB db;
         private String ident;
 
-        public DetailCategoryTask(DB db,String ident) {
+        public DetailCategoryTask(DB db, String ident) {
             this.db = db;
             this.ident = ident;
         }
@@ -124,6 +124,7 @@ public class CategoryDetailPresenter extends PresenterBase {
 
                 if (c.moveToFirst()) {
                     int idNameActiveIndex = c.getColumnIndex(DB.Table.NAME_ACTIVE);
+
                     int idActiveCaloricityCost = c.getColumnIndex(DB.Table.CALORICITYCOST_ACTIVE);
 
                     do {
@@ -138,6 +139,8 @@ public class CategoryDetailPresenter extends PresenterBase {
             }
             return entityList;
         }
+
+
 
         @Override
         protected void onPostExecute(List<Entity> list) {

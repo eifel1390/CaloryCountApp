@@ -5,9 +5,8 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ADD8E6"
     android:fitsSystemWindows="true">
-
-
 
     <include layout="@layout/content_recyclerview" />
 
@@ -23,5 +22,7 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
+
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -14,6 +14,7 @@
     <color name="limit">#32CD32</color>
     <color name="over_limit">#FF0000</color>
     <color name="colorTransparentWhite">#cccccc</color>
+    <color name="startCaloryButton">#87CEEB</color>
 
 
     <!-- Screens background color-->
@@ -62,4 +63,10 @@
         <item>@color/dot_dark_screen6</item>
 
     </array>
+
+    <!-- background-->
+    <!-- Blue Grey 200 -->
+    <color name="colorBackgroundEnd">#b0bec5</color>
+    <!-- Grey 50 -->
+    <color name="colorBackgroundStart">#fafafa</color>
 </resources>

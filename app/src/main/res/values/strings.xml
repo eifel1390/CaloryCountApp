@@ -30,6 +30,7 @@
     <string name="receive_calory">Потреблено</string>
     <string name="your_limit">Ваш установленный лимит </string>
     <string name="medium_calory_in_day">Середнее потребление калорий в день </string>
+    <string name="fruits_string">Фрукты</string>
 
     <string-array name="entries">
         <item>Похудение</item>
@@ -45,8 +46,6 @@
         <item>English</item>
         <item>Русский</item>
     </string-array>
-
-
 
     <string-array name="clear_history">
         <item>Очистить историю</item>

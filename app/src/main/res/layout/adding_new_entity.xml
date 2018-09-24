@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#ADD8E6"
     android:id="@+id/addingNewProductContainer">
 
     <LinearLayout

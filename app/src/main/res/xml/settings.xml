@@ -4,6 +4,51 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:title="Редактировать личные данные"
+        android:summary=""
+        android:persistent="false">
+
+        <ListPreference
+            android:entries="@array/gender"
+            android:entryValues="@array/entry_gender"
+            android:key="screen_gender"
+            android:summary="Укажите ваш пол"
+            android:title="Пол">
+        </ListPreference>
+
+        <EditTextPreference
+            android:key="enterAge"
+            android:summary="Введите ваш полный возраст"
+            android:inputType="number"
+            android:title="Возраст">
+        </EditTextPreference>
+
+        <EditTextPreference
+            android:key="enterWeight"
+            android:summary="Введите ваш вес в килограммах"
+            android:inputType="number"
+            android:title="Вес">
+        </EditTextPreference>
+
+        <EditTextPreference
+            android:key="enterHeight"
+            android:inputType="number"
+            android:summary="Введите ваш рост в сантиметрах"
+            android:title="Рост">
+        </EditTextPreference>
+
+        <ListPreference
+            android:entries="@array/entries"
+            android:entryValues="@array/entry_values"
+            android:key="list"
+            android:summary="Укажите, с какой целью вы ведете подсчет калорий"
+            android:title="Цель подсчета калорий">
+        </ListPreference>
+
+    </PreferenceScreen>
+
     <EditTextPreference
         android:key="enterCaloryLimit"
         android:inputType="number"

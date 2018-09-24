@@ -8,7 +8,7 @@ import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.Database.NumberCaloryPreferences;
 import com.example.calorycountapp.View.MainActivity;
 import com.example.calorycountapp.View.MvpView;
-import com.example.calorycountapp.View.SettingsActivity;
+import com.example.calorycountapp.SettingsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

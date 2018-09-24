@@ -1,19 +1,15 @@
 package com.example.calorycountapp.Presenter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 
 import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.EntityIdent;
 import com.example.calorycountapp.Model.Active;
 import com.example.calorycountapp.Model.Entity;
 import com.example.calorycountapp.Model.Product;
-import com.example.calorycountapp.R;
 import com.example.calorycountapp.View.Category;
 import com.example.calorycountapp.View.CategoryDetail;
 import com.example.calorycountapp.View.MvpView;
@@ -81,7 +77,7 @@ public class CategoryPresenter extends PresenterBase {
         DB db;
         String loadId;
 
-        LoadCategoryListTask(DB db,String loadId){
+        LoadCategoryListTask(DB db, String loadId){
             this.db = db;
             this.loadId = loadId;
         }

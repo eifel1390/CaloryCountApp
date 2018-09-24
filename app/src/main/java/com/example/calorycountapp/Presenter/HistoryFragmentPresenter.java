@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.Database.MediumCaloriesPreferences;
@@ -17,7 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 
-public class HistoryFragmentPresenter extends PresenterBase  {
+public class HistoryFragmentPresenter extends PresenterBase {
 
     private HistoryFragment fragment;
     private DB db;
@@ -28,7 +27,9 @@ public class HistoryFragmentPresenter extends PresenterBase  {
 
     /*SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+            Log.d("23","key is "+key);
             if (key.equals("enterCaloryLimit")) {
+                Log.d("23",key);
                 NumberCaloryPreferences.setSettingsIdent(context,"calculateByUser");
 
             }
@@ -40,7 +41,7 @@ public class HistoryFragmentPresenter extends PresenterBase  {
     };*/
 
     public HistoryFragmentPresenter(MvpView view) {
-        fragment = (HistoryFragment)view;
+        fragment = (HistoryFragment) view;
         this.context = fragment.getContext();
         db = new DB(context);
         sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -53,17 +54,16 @@ public class HistoryFragmentPresenter extends PresenterBase  {
         showDataInView();
     }
 
-    public void showDataInView(){
+    public void showDataInView() {
         HistoryFragmentPresenter.GetDataFromHistory task = new HistoryFragmentPresenter.GetDataFromHistory(db);
         task.execute();
 
         try {
-            if(task.get().isEmpty()){
+            if (task.get().isEmpty()) {
                 //fragment.showEmptyMessage();
             }
             fragment.showData(task.get());
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -75,7 +75,7 @@ public class HistoryFragmentPresenter extends PresenterBase  {
     public void displayAnotherScreen(String nameOfScreen, String entityIdent) {
     }
 
-    private class GetDataFromHistory extends AsyncTask<Void,Void,Map<String,Integer>> {
+    private class GetDataFromHistory extends AsyncTask<Void, Void, Map<String, Integer>> {
 
         private DB db;
 
@@ -90,78 +90,88 @@ public class HistoryFragmentPresenter extends PresenterBase  {
         }
 
         @Override
-        protected Map<String,Integer>  doInBackground(Void... voids) {
-            Map<String,Integer> historyResult = new TreeMap<>();
+        protected Map<String, Integer> doInBackground(Void... voids) {
+            Map<String, Integer> historyResult = new TreeMap<>();
             Cursor c = db.getAllDataFromHistoryDatabase();
 
-            if(c.moveToFirst()) {
+            if (c.moveToFirst()) {
                 int historyDateIndex = c.getColumnIndex(DB.Table.HISTORY_DATE);
                 int historyCaloryIndex = c.getColumnIndex(DB.Table.HISTORY_DATE_CALORY);
 
                 do {
-                    historyResult.put(c.getString(historyDateIndex),c.getInt(historyCaloryIndex));
+                    historyResult.put(c.getString(historyDateIndex), c.getInt(historyCaloryIndex));
                 }
                 while (c.moveToNext());
             }
             c.close();
-            MediumCaloriesPreferences.setHistorySize(fragment.getContext(),historyResult.size());
+            MediumCaloriesPreferences.setHistorySize(fragment.getContext(), historyResult.size());
             return historyResult;
         }
 
         @Override
-        protected void onPostExecute(Map<String,Integer>map) {
+        protected void onPostExecute(Map<String, Integer> map) {
             super.onPostExecute(map);
             db.close();
         }
     }
 
 
-    public void countingMediumValue(){
+    public void countingMediumValue() {
         int historySize = MediumCaloriesPreferences.getHistorySize(context);
         int quantityCalory = NumberCaloryPreferences.getConstantCalory(context);
 
-        if(historySize!=0) {
+        if (historySize != 0) {
             fragment.showMediumValue(quantityCalory / historySize);
-        }
-        else fragment.showMediumValue(0);
+        } else fragment.showMediumValue(0);
     }
 
-    private void checkLimit(){
+    private void checkLimit() {
+        fragment.showLimit(NumberCaloryPreferences.getLimitCalory(context));
+    }
 
-        //проверка лимита
+}
+
+        /*String message = NumberCaloryPreferences.getSettingsIdent(context);
 
 
-        //String message = NumberCaloryPreferences.getSettingsIdent(context);
+        if (message != null) {
+            if (message.equals("calculateByHelper")) {
 
-        //if(message!=null) {
-            /*if (message.equals("calculateByHelper")) {
+                if (sp.getString("screen_gender", "").length() > 0 && sp.getString("enterAge", "").length() > 0 && sp.getString("enterWeight", "").length() > 0 &&
+                        sp.getString("enterHeight", "").length() > 0 && sp.getString("list", "не выбрано").length() > 0) {
 
-                if(sp.getString("screen_gender","").length()>0&&sp.getString("enterAge","").length()>0&&sp.getString("enterWeight","").length()>0&&
-                        sp.getString("enterHeight","").length()>0&&sp.getString("list","не выбрано").length()>0) {
-
-                    String  gender = sp.getString("screen_gender", "");
-                    int  age = Integer.parseInt(sp.getString("enterAge", ""));
-                    int  weight = Integer.parseInt(sp.getString("enterWeight", ""));
+                    String gender = sp.getString("screen_gender", "");
+                    int age = Integer.parseInt(sp.getString("enterAge", ""));
+                    int weight = Integer.parseInt(sp.getString("enterWeight", ""));
                     int height = Integer.parseInt(sp.getString("enterHeight", ""));
-                    String  purpose = sp.getString("list", "не выбрано");
+                    String purpose = sp.getString("list", "не выбрано");
                     NumberCaloryPreferences.setLimitCalory(context, calculateDailyLimit(gender, age, weight, height, purpose));
+                    IntroDataSharedPreference.setUserGender(context,Integer.parseInt(gender));
+                    IntroDataSharedPreference.setUserAge(context,age);
+                    IntroDataSharedPreference.setUserWeight(context,weight);
+                    IntroDataSharedPreference.setUserHeight(context,height);
+                    IntroDataSharedPreference.setUserTarget(context,Integer.parseInt(purpose));
                 }
-            }*/
+            }
 
-            //if (message.equals("calculateByUser")) {
+            if (message.equals("calculateByUser")) {
 
-            //    int userCalory = 0;
-            //    if(sp.getString("enterCaloryLimit", "").length()>0) {
-            //        userCalory = Integer.parseInt(sp.getString("enterCaloryLimit", ""));
-            //    }
-            //    NumberCaloryPreferences.setLimitCalory(context, userCalory);
-            //}
+                int userCalory = 0;
+                if (sp.getString("enterCaloryLimit", "").length() > 0) {
+                    userCalory = Integer.parseInt(sp.getString("enterCaloryLimit", ""));
+                }
+                NumberCaloryPreferences.setLimitCalory(context, userCalory);
+            }
+            fragment.showLimit(NumberCaloryPreferences.getLimitCalory(context));
         }
-
-        //fragment.showLimit(NumberCaloryPreferences.getLimitCalory(context));
+        if(message == null){
+            fragment.showLimit(NumberCaloryPreferences.getLimitCalory(context));
+        }*/
     //}
 
-    private int calculateDailyLimit(String gender,int age,int weight,int height,String purpose){
+
+
+    /*private int calculateDailyLimit(String gender,int age,int weight,int height,String purpose){
 
         int result = 0;
         int mensPercent = (int) (((9.99 * weight) + (6.25 * height) - (4.92 * age) + 5) / 100 * 20);
@@ -194,5 +204,5 @@ public class HistoryFragmentPresenter extends PresenterBase  {
         }
 
         return result;
-    }
-}
+    }*/
+//}

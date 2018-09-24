@@ -5,10 +5,12 @@ import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.calorycountapp.CaloryLevelButton;
@@ -55,17 +57,16 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
         if(NumberCaloryPreferences.getStoredCalory(getContext())!=0) {
             calory = NumberCaloryPreferences.getStoredCalory(getContext());
         }
+        else calory = 0;
         toProduct = (Button) v.findViewById(R.id.plus);
         toProduct.setOnClickListener(this);
         toActive = (Button) v.findViewById(R.id.minus);
         toActive.setOnClickListener(this);
+
         caloryNumberPerDay = (CaloryLevelButton) v.findViewById(R.id.number_of_calories);
         caloryNumberPerDay.setLabelText(String.valueOf(calory));
-        caloryNumberPerDay.setCircleColor(Color.rgb(152,251,152));
-        caloryNumberPerDay.setLabelColor(Color.BLUE);
-
-        //caloryNumberPerDay.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
+        caloryNumberPerDay.setLabelColor(Color.WHITE);
+        //caloryNumberPerDay.setBackground(getResources().getDrawable(R.drawable.calory_button_border));
     }
 
     //инициализация презентера
@@ -82,12 +83,28 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
         super.onResume();
         if(NumberCaloryPreferences.getStoredCalory(getContext())!=0) {
             calory = NumberCaloryPreferences.getStoredCalory(getContext());
-            caloryNumberPerDay.setLabelText(String.valueOf(calory));
+            setColorDependingOfCalory(calory);
         }
         if(NumberCaloryPreferences.getStoredCalory(getContext())==0) {
-            caloryNumberPerDay.setLabelText(String.valueOf(0));
+            calory = 0;
+            setColorDependingOfCalory(0);
         }
     }
+
+    public void setColorDependingOfCalory(int calory){
+        if(calory<0){
+            caloryNumberPerDay.setCircleColor(Color.rgb(246, 76, 115));
+            caloryNumberPerDay.setBackground(getResources().getDrawable(R.drawable.calory_button_above_border));
+        }
+        if(calory>0){
+            caloryNumberPerDay.setCircleColor(Color.rgb(20, 168, 149));
+            caloryNumberPerDay.setBackground(getResources().getDrawable(R.drawable.calory_button_below_border));
+        }
+        if(calory==0){
+            caloryNumberPerDay.setCircleColor(Color.rgb(135,206,235));}
+            caloryNumberPerDay.setBackground(getResources().getDrawable(R.drawable.calory_button_border));
+    }
+
 
     //реакция на нажатие кнопок + и -
     @Override
@@ -115,6 +132,7 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
     protected void displayReceivedData(int calory)
     {
         caloryNumberPerDay.setLabelText(String.valueOf(calory));
+        setColorDependingOfCalory(calory);
     }
 
     @Override

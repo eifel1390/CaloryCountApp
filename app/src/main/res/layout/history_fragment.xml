@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/charts"
+        android:background="#ADD8E6"
         android:orientation="vertical"
         android:layout_height="match_parent">
 

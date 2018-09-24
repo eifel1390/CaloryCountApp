@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,14 +26,22 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
     private Button plusTwenty,plusHungred,minusTwenty,minusHungred,saveinSharedPreference;
     private PropertyPresenter presenter;
     private int consumption, caloryInHungred;
+    private String textMinuteOrGramm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.entity_property);
+        setContentView(R.layout.entity_property2);
         Intent intent = getIntent();
         entityName = intent.getStringExtra(ENTITY_NAME);
         entityType = intent.getStringExtra(ENTITY_TYPE);
+        Log.d("45",entityType);
+        if(entityType.equals("product")){
+            textMinuteOrGramm = "грамм";
+        }
+        if(entityType.equals("active")){
+            textMinuteOrGramm = "минут";
+        }
         if(savedInstanceState!=null){
             consumption = savedInstanceState.getInt(CONSUMPTION_VALUE);
         }
@@ -83,18 +92,18 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
     }
 
     public void setProductCalory(int value){
-        productCaloryInHungred.setText(String.valueOf(value));
+        productCaloryInHungred.setText(String.valueOf(value)+" "+"калорий");
         caloryInHungred = value;
     }
 
     public void showInfoText(int consumption,int caloryInHungred){
         if(entityType.equals(EntityIdent.IS_PRODUCT)) {
             int value = (int) ((caloryInHungred * consumption) / 100.0f);
-            infoText.setText("Будет начислено "+value+" калорий");
+            consumptionCountGr.setText(String.valueOf(value));
         }
         if(entityType.equals(EntityIdent.IS_ACTIVE)) {
             int value = (int) ((caloryInHungred * consumption) / 60.0f);
-            infoText.setText("Будет списано "+value+" калорий");
+            consumptionCountGr.setText(String.valueOf(value));
         }
 
     }
@@ -106,12 +115,12 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
             switch (v.getId()) {
                 case R.id.plusTwenty:
                     consumption += 20;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.plusHungred:
                     consumption += 100;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusTwenty:
@@ -121,7 +130,7 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
                     else if(consumption<=0){
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusHungred:
@@ -131,7 +140,7 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
                     else if(consumption<=0) {
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.saveToSharedPreference:
@@ -145,12 +154,12 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
             switch (v.getId()) {
                 case R.id.plusTwenty:
                     consumption += 5;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.plusHungred:
                     consumption += 30;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusTwenty:
@@ -160,7 +169,7 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
                     else if(consumption<=0){
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusHungred:
@@ -170,7 +179,7 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
                     else if(consumption<=0){
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText("Выбрано "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.saveToSharedPreference:

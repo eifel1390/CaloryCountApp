@@ -8,7 +8,7 @@ public class NumberCaloryPreferences {
     private static final String STORED_CALORY = "stored_calory";
     private static final String CONSTANT_CALORY = "constant_calory";
     private static final String LIMIT_CALORY = "limit_calory";
-    private static final String SETTINGS_IDENT = "settings_ident";
+    private static final String CALORY_EDIT = "calory_edit";
 
     private static final String TAG = "counter";
 
@@ -53,18 +53,9 @@ public class NumberCaloryPreferences {
                 .apply();
     }
 
-    public static String getSettingsIdent(Context context){
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(SETTINGS_IDENT,null);
-    }
 
 
-    public static void setSettingsIdent(Context context,String value) {
-        PreferenceManager.getDefaultSharedPreferences(context)
-                .edit()
-                .putString(SETTINGS_IDENT,value)
-                .apply();
-    }
+
 
 
 }

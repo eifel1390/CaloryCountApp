@@ -1,12 +1,9 @@
 package com.example.calorycountapp.Adapter;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -116,6 +113,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
                         notifyItemInserted(indexOfDeletedItem);
                     }
                 }).show();
+
     }
 
     private class TemporaryDeleteDataTask extends AsyncTask<Void, Void, Void> {
@@ -123,7 +121,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
         private DB db;
         String name;
 
-        TemporaryDeleteDataTask(DB db,String name){
+        TemporaryDeleteDataTask(DB db, String name){
             this.db = db;
             this.name = name;
         }
@@ -154,7 +152,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
         private int value;
         private String type;
 
-        TemporaryAddDataTask(DB db,String entityName, int value, String type){
+        TemporaryAddDataTask(DB db, String entityName, int value, String type){
             this.db = db;
             this.name = entityName;
             this.value = value;

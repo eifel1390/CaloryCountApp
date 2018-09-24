@@ -178,7 +178,9 @@ public class IntroActivity extends AppCompatActivity {
             checkBuilder.append("\n");
             result = false;
         }
-        Toast.makeText(IntroActivity.this,checkBuilder.toString(),Toast.LENGTH_SHORT).show();
+        if(checkBuilder.toString().length()>0) {
+            Toast.makeText(IntroActivity.this, checkBuilder.toString(), Toast.LENGTH_SHORT).show();
+        }
         return result;
     }
 
