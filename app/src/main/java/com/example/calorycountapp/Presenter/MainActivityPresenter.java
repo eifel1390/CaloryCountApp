@@ -45,7 +45,7 @@ public class MainActivityPresenter extends PresenterBase {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int delayInHour = hour < 18 ? 18 - hour : 24 - (hour - 23);
+        int delayInHour = hour < 13 ? 13 - hour : 24 - (hour - 13);
 
         scheduler.scheduleAtFixedRate
                 (new Runnable() {
