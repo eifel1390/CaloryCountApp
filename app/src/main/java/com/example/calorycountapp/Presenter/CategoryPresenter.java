@@ -1,19 +1,15 @@
 package com.example.calorycountapp.Presenter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 
 import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.EntityIdent;
 import com.example.calorycountapp.Model.Active;
 import com.example.calorycountapp.Model.Entity;
 import com.example.calorycountapp.Model.Product;
-import com.example.calorycountapp.R;
 import com.example.calorycountapp.View.Category;
 import com.example.calorycountapp.View.CategoryDetail;
 import com.example.calorycountapp.View.MvpView;
@@ -29,15 +25,13 @@ public class CategoryPresenter extends PresenterBase {
     private Context context;
 
 
-
     public CategoryPresenter(MvpView mvpView) {
         this.category = (Category)mvpView;
         this.context = category;
         model = new DB(context);
-
     }
 
-    //в момент включения фрагмент запрашивает данные либо по продуктам либо по активностям
+
     @Override
     public void viewIsReady(String ident) {
         if(ident.equals(EntityIdent.IS_PRODUCT)) {
@@ -53,9 +47,7 @@ public class CategoryPresenter extends PresenterBase {
     }
 
 
-
-    //отображение полученных данных во вью Category
-    public void showDataInView(LoadCategoryListTask task){
+    private void showDataInView(LoadCategoryListTask task){
         task.execute();
         try {
             category.showData(task.get());
@@ -67,7 +59,7 @@ public class CategoryPresenter extends PresenterBase {
         }
     }
 
-    //при нажатии на категорию отображается список продуктов и активностей по категории
+
     @Override
     public void displayAnotherScreen(String nameOfScreen,String ident) {
         Intent intent = new Intent(category,CategoryDetail.class);
@@ -81,7 +73,7 @@ public class CategoryPresenter extends PresenterBase {
         DB db;
         String loadId;
 
-        LoadCategoryListTask(DB db,String loadId){
+        LoadCategoryListTask(DB db, String loadId){
             this.db = db;
             this.loadId = loadId;
         }

@@ -3,6 +3,7 @@ package com.example.calorycountapp.Presenter;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.Model.Entity;
@@ -30,7 +31,6 @@ public class DailyStatisticsPresenter extends PresenterBase  {
 
     @Override
     public void viewIsReady(String ident) {
-        //запрос к временной таблице,получение данных
         showDataInView();
     }
 
@@ -66,15 +66,20 @@ public class DailyStatisticsPresenter extends PresenterBase  {
             List<Entity>entityList = new ArrayList<>();
 
             Cursor c = db.getAllDataFromTemporaryTable();
+
             if(c.moveToFirst()) {
+
                 int entityNameIndex = c.getColumnIndex(DB.Table.TEMPORARY_ENTITY_NAME);
                 int entityCountIndex = c.getColumnIndex(DB.Table.TEMPORARY_ENTITY_COST);
                 int entityTypeIndex = c.getColumnIndex(DB.Table.TEMPORARY_ENTITY_TYPE);
+                int entityConsumptionIndex =c.getColumnIndex(DB.Table.TEMPORARY_ENTITY_CONSUMPTION);
+
                 do {
                     TemporaryEntity temporaryEntity = new TemporaryEntity();
                     temporaryEntity.setTemporaryName(c.getString(entityNameIndex));
                     temporaryEntity.setTemporaryCount(c.getInt(entityCountIndex));
                     temporaryEntity.setEntityType(c.getString(entityTypeIndex));
+                    temporaryEntity.setTemporaryConsumption(c.getInt(entityConsumptionIndex));
                     entityList.add(temporaryEntity);
                 }
                 while (c.moveToNext());

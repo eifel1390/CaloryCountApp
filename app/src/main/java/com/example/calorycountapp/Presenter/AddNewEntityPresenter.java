@@ -33,7 +33,7 @@ public class AddNewEntityPresenter  extends PresenterBase {
         DB db;
         String entityIdent;
 
-        public NewEntityAddingPresenterTask(DB db,String entityValue) {
+        public NewEntityAddingPresenterTask(DB db, String entityValue) {
             this.db = db;
             this.entityIdent = entityValue;
         }

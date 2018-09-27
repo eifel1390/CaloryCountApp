@@ -5,6 +5,7 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/myCoordinatorLayout"
+        android:background="#ADD8E6"
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="match_parent">

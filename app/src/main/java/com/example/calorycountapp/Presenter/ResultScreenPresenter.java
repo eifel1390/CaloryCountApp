@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.calorycountapp.Database.IntroDataSharedPreference;
+import com.example.calorycountapp.Database.NumberCaloryPreferences;
 import com.example.calorycountapp.View.MvpView;
 import com.example.calorycountapp.View.ResultScreenActivity;
 
@@ -19,21 +20,22 @@ public class ResultScreenPresenter extends PresenterBase {
     }
 
     @Override
-    public void displayAnotherScreen(String nameOfScreen, String entityIdent) {
-
-    }
+    public void displayAnotherScreen(String nameOfScreen, String entityIdent) {}
 
     @Override
     public void viewIsReady(String ident) {
+
         int gender = IntroDataSharedPreference.getUserGender(context);
         int age = IntroDataSharedPreference.getUserAge(context);
         int weight = IntroDataSharedPreference.getUserWeight(context);
         int height = IntroDataSharedPreference.getUserHeight(context);
         int purpose = IntroDataSharedPreference.getUserTarget(context);
 
-        int dailyLimit = calculateDailyLimit(gender,age,weight,height,purpose);
+        int dailyLimit = calculateDailyLimit(gender, age, weight, height, purpose);
+        NumberCaloryPreferences.setLimitCalory(activity, dailyLimit);
         activity.showDailyLimit(dailyLimit);
     }
+
 
 
 

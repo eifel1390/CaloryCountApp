@@ -12,19 +12,14 @@ import com.example.calorycountapp.View.MainFragment;
 
 public class TabsAdapter extends FragmentPagerAdapter {
 
-    private Context context;
-
-    String main;
-
     private String[] titles = { "Главная",
             "Сегодня","Моя история"  };
 
     public TabsAdapter(FragmentManager fm,Context c) {
         super(fm);
-        context = c;
     }
 
-    //возвращает фрагмент, связанный с указанной позицией.
+
     @Override
     public Fragment getItem(int position) {
         switch(position){

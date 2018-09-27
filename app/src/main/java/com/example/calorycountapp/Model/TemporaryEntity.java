@@ -6,6 +6,7 @@ public class TemporaryEntity extends Entity {
     private String temporaryName;
     private int temporaryCount;
     private String entityType;
+    private int temporaryConsumption;
 
 
     public TemporaryEntity() {}
@@ -34,5 +35,11 @@ public class TemporaryEntity extends Entity {
         this.temporaryName = temporaryName;
     }
 
+    public int getTemporaryConsumption() {
+        return temporaryConsumption;
+    }
 
+    public void setTemporaryConsumption(int temporaryConsumption) {
+        this.temporaryConsumption = temporaryConsumption;
+    }
 }

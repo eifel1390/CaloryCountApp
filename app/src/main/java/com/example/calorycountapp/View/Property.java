@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,14 +26,22 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
     private Button plusTwenty,plusHungred,minusTwenty,minusHungred,saveinSharedPreference;
     private PropertyPresenter presenter;
     private int consumption, caloryInHungred;
+    private String textMinuteOrGramm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.entity_property);
+        setContentView(R.layout.entity_property2);
         Intent intent = getIntent();
         entityName = intent.getStringExtra(ENTITY_NAME);
         entityType = intent.getStringExtra(ENTITY_TYPE);
+
+        if(entityType.equals(EntityIdent.IS_PRODUCT)){
+            textMinuteOrGramm = getString(R.string.gramm);
+        }
+        if(entityType.equals(EntityIdent.IS_ACTIVE)){
+            textMinuteOrGramm = getString(R.string.minute);
+        }
         if(savedInstanceState!=null){
             consumption = savedInstanceState.getInt(CONSUMPTION_VALUE);
         }
@@ -42,20 +51,20 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
 
     @Override
     public void initView() {
-        product = (TextView) findViewById(R.id.productName);
-        spendsContains = (TextView) findViewById(R.id.spendsContains);
-        infoText = (TextView) findViewById(R.id.infoText);
-        productCaloryInHungred = (TextView) findViewById(R.id.numberCaloryInProduct);
-        consumptionCountGr = (TextView) findViewById(R.id.completeCaloryNubmer);
-        plusTwenty = (Button) findViewById(R.id.plusTwenty);
+        product =  findViewById(R.id.productName);
+        spendsContains =  findViewById(R.id.spendsContains);
+        infoText =  findViewById(R.id.infoText);
+        productCaloryInHungred =  findViewById(R.id.numberCaloryInProduct);
+        consumptionCountGr =  findViewById(R.id.completeCaloryNubmer);
+        plusTwenty =  findViewById(R.id.plusTwenty);
         plusTwenty.setOnClickListener(this);
-        minusTwenty = (Button)findViewById(R.id.minusTwenty);
+        minusTwenty = findViewById(R.id.minusTwenty);
         minusTwenty.setOnClickListener(this);
-        plusHungred = (Button) findViewById(R.id.plusHungred);
+        plusHungred =  findViewById(R.id.plusHungred);
         plusHungred.setOnClickListener(this);
-        minusHungred =(Button) findViewById(R.id.minusHungred);
+        minusHungred = findViewById(R.id.minusHungred);
         minusHungred.setOnClickListener(this);
-        saveinSharedPreference = (Button) findViewById(R.id.saveToSharedPreference);
+        saveinSharedPreference =  findViewById(R.id.saveToSharedPreference);
         saveinSharedPreference.setOnClickListener(this);
         product.setText(entityName);
         consumptionCountGr.setText(String.valueOf(consumption));
@@ -83,55 +92,55 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
     }
 
     public void setProductCalory(int value){
-        productCaloryInHungred.setText(String.valueOf(value));
+        productCaloryInHungred.setText(String.valueOf(value)+" "+getString(R.string.calories));
         caloryInHungred = value;
     }
 
     public void showInfoText(int consumption,int caloryInHungred){
         if(entityType.equals(EntityIdent.IS_PRODUCT)) {
             int value = (int) ((caloryInHungred * consumption) / 100.0f);
-            infoText.setText("Будет начислено "+value+" калорий");
+            consumptionCountGr.setText(String.valueOf(value));
         }
         if(entityType.equals(EntityIdent.IS_ACTIVE)) {
             int value = (int) ((caloryInHungred * consumption) / 60.0f);
-            infoText.setText("Будет списано "+value+" калорий");
+            consumptionCountGr.setText(String.valueOf(value));
         }
 
     }
 
-    //TODO нельзя уходить в минус при выборе грамм продукта или минут активности.То есть нельзя чтобы юзер выбрал помидор -20 грамм.
+
     @Override
     public void onClick(View v) {
         if(entityType.equals(EntityIdent.IS_PRODUCT)) {
             switch (v.getId()) {
                 case R.id.plusTwenty:
                     consumption += 20;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.plusHungred:
                     consumption += 100;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusTwenty:
-                    if(consumption>0) {
+                    if(consumption>0&&consumption>=20) {
                         consumption -= 20;
                     }
                     else if(consumption<=0){
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusHungred:
-                    if(consumption>0){
+                    if(consumption>0&&consumption>=100){
                         consumption -= 100;
                     }
                     else if(consumption<=0) {
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.saveToSharedPreference:
@@ -145,32 +154,32 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
             switch (v.getId()) {
                 case R.id.plusTwenty:
                     consumption += 5;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.plusHungred:
                     consumption += 30;
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusTwenty:
-                    if(consumption>0) {
+                    if(consumption>0&&consumption>=5) {
                         consumption -= 5;
                     }
                     else if(consumption<=0){
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.minusHungred:
-                    if(consumption>0) {
+                    if(consumption>0&&consumption>=30) {
                         consumption -= 30;
                     }
                     else if(consumption<=0){
                         consumption = 0;
                     }
-                    consumptionCountGr.setText(String.valueOf(consumption));
+                    infoText.setText(getString(R.string.choosen)+" "+String.valueOf(consumption)+" "+textMinuteOrGramm);
                     showInfoText(consumption,caloryInHungred);
                     break;
                 case R.id.saveToSharedPreference:
@@ -182,27 +191,19 @@ public class Property extends AppCompatActivity implements MvpView,View.OnClickL
         }
     }
 
-    private int notBelowZero(int consumption){
-        int result = 0;
-        if(consumption<0){
-            result = 0;
-        }
-        else result = consumption;
-        return result;
-    }
 
     public void calculateValue(String productName,int consumption,int caloryInHungred,String entityType){
 
         if(entityType.equals(EntityIdent.IS_PRODUCT)) {
             int value = (int) ((caloryInHungred * consumption) / 100.0f);
             presenter.getValueToPreference(value,entityType);
-            presenter.addEntityToTemporaryTable(productName,value,entityType);
+            presenter.addEntityToTemporaryTable(productName,value,entityType,consumption);
         }
 
         else if(entityType.equals(EntityIdent.IS_ACTIVE)) {
             int value = (int) ((caloryInHungred * consumption) / 60.0f);
             presenter.getValueToPreference(value,entityType);
-            presenter.addEntityToTemporaryTable(productName,value,entityType);
+            presenter.addEntityToTemporaryTable(productName,value,entityType,consumption);
         }
     }
 

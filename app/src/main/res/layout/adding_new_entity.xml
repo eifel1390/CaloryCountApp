@@ -1,67 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:id="@+id/addingNewProductContainer">
+    android:background="#ADD8E6">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:padding="10dp"
-        android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="326dp"
+        android:layout_height="49dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/addNameProduct"
+        android:layout_marginTop="168dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:id="@+id/addNameProduct"
-            android:hint="Введите название продукта"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/addNameCaloricity"
+        app:layout_constraintRight_toRightOf="@+id/addNameProduct"
+        app:layout_constraintLeft_toLeftOf="@+id/addNameProduct"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/addNameProduct" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:id="@+id/addNameCaloricity"
-            android:inputType="number"
-            android:padding="30dp"
-            android:hint="Введите количество калорий в 100 гр"
-            android:layout_height="wrap_content" />
+    <Button
+        android:text="@string/cancelled"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelProduct"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/addNameCaloricity"
+        android:layout_marginStart="56dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.09" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_height="wrap_content"
-
-                android:id="@+id/cancelProduct"
-                android:text="Отмена"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-
-                android:id="@+id/saveProduct"
-                android:text="Сохранить"/>
-
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-
-
-
-
-</RelativeLayout>
+    <Button
+        android:text="@string/save"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/addNameCaloricity"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.09"
+        android:id="@+id/saveProduct" />
+</android.support.constraint.ConstraintLayout>

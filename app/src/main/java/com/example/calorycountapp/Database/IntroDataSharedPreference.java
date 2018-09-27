@@ -13,13 +13,13 @@ public class IntroDataSharedPreference {
     private static final String USER_GENDER = "user_gender";
     private static final String USER_AGE = "user_age";
 
-    //выдает вес
+
     public static int getUserWeight(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(USER_WEIGHT,0);
     }
 
-    //задает вес
+
     public static void setUserWeight(Context context,int weight) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
@@ -27,13 +27,13 @@ public class IntroDataSharedPreference {
                 .apply();
     }
 
-    //выдает рост
+
     public static int getUserHeight(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(USER_HEIGHT,0);
     }
 
-    //задает рост
+
     public static void setUserHeight(Context context,int height) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
@@ -41,13 +41,13 @@ public class IntroDataSharedPreference {
                 .apply();
     }
 
-    //выдает номер цели
+
     public static int getUserTarget(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(USER_TARGET,0);
     }
 
-    //задает номер цели
+
     public static void setUserTarget(Context context,int target) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
@@ -55,13 +55,13 @@ public class IntroDataSharedPreference {
                 .apply();
     }
 
-    //выдает возраст
+
     public static int getUserAge(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(USER_AGE,0);
     }
 
-    //задает возраст
+
     public static void setUserAge(Context context,int age) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
@@ -69,13 +69,13 @@ public class IntroDataSharedPreference {
                 .apply();
     }
 
-    //выдает пол
+
     public static int getUserGender(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(USER_GENDER,0);
     }
 
-    //задает пол
+
     public static void setUserGender(Context context,int gender) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()

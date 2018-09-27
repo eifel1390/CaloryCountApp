@@ -17,38 +17,38 @@ public class TargetIntroFragment extends Fragment {
     public TargetIntroFragment() {}
 
     public static TargetIntroFragment newInstance() {
-        TargetIntroFragment f = new TargetIntroFragment();
-        return f;
+        return new TargetIntroFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.target_slide, container, false);
-        return v;
+        return inflater.inflate(R.layout.target_slide, container, false);
     }
 
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        View view = getView();
+        if (view != null) {
+            RadioGroup radioGroup = view.findViewById(R.id.RGroup);
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-        RadioGroup radioGroup = (RadioGroup) getView().findViewById(R.id.RGroup);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // find which radio button is selected
-                if(checkedId == R.id.looseWeight) {
-                    IntroDataSharedPreference.setUserTarget(getContext(),1);
+                    if (checkedId == R.id.looseWeight) {
+                        IntroDataSharedPreference.setUserTarget(getContext(), 1);
+                    }
+                    if (checkedId == R.id.saveWeight) {
+                        IntroDataSharedPreference.setUserTarget(getContext(), 2);
+                    }
+                    if (checkedId == R.id.takeWeight) {
+                        IntroDataSharedPreference.setUserTarget(getContext(), 2);
+                    }
                 }
-                if(checkedId == R.id.saveWeight) {
-                    IntroDataSharedPreference.setUserTarget(getContext(),2);
-                }
-                if(checkedId == R.id.takeWeight) {
-                    IntroDataSharedPreference.setUserTarget(getContext(),2);
-                }
-            }
-        });
+            });
+        }
     }
 
 }

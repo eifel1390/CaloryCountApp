@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ADD8E6"
     android:fitsSystemWindows="true">
-
-
 
     <include layout="@layout/content_recyclerview" />
 
@@ -20,8 +18,17 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_black_24dp"/>
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>

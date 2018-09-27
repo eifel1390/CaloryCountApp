@@ -23,7 +23,7 @@
         <activity android:name=".View.CategoryDetail" android:parentActivityName=".View.Category"/>
         <activity android:name=".View.AddNewEntity"/>
         <activity android:name=".View.Property"/>
-        <activity android:name=".View.SettingsActivity" android:parentActivityName=".View.MainActivity"/>
+        <activity android:name=".SettingsActivity" android:parentActivityName=".View.MainActivity"/>
     </application>
 
 </manifest>

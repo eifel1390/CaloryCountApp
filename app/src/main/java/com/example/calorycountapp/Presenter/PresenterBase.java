@@ -20,10 +20,6 @@ public abstract class PresenterBase<T extends MvpView> implements MvpPresenter<T
         return view;
     }
 
-    protected boolean isViewAttached() {
-        return view != null;
-    }
-
     public abstract void displayAnotherScreen(String nameOfScreen,String entityIdent);
 
 }

@@ -1,12 +1,9 @@
 package com.example.calorycountapp.Adapter;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,7 +39,6 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
         db = new DB(context);
         coordinatorLayout = layout;
         this.items = super.items;
-
     }
 
     @Override
@@ -97,7 +93,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
                     public void onClick(View v) {
                         items.add(indexOfDeletedItem, deletedItem);
                         TemporaryAddDataTask task = new TemporaryAddDataTask(db,deletedItem.getTemporaryName(),
-                                deletedItem.getTemporaryCount(),deletedItem.getEntityType());
+                                deletedItem.getTemporaryCount(),deletedItem.getEntityType(),deletedItem.getTemporaryConsumption());
                         task.execute();
                         if(deletedItem.getEntityType().equals(EntityIdent.IS_PRODUCT)) {
                             int number = NumberCaloryPreferences.getStoredCalory(context);
@@ -116,6 +112,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
                         notifyItemInserted(indexOfDeletedItem);
                     }
                 }).show();
+
     }
 
     private class TemporaryDeleteDataTask extends AsyncTask<Void, Void, Void> {
@@ -123,7 +120,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
         private DB db;
         String name;
 
-        TemporaryDeleteDataTask(DB db,String name){
+        TemporaryDeleteDataTask(DB db, String name){
             this.db = db;
             this.name = name;
         }
@@ -153,12 +150,14 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
         private String name;
         private int value;
         private String type;
+        private int consumption;
 
-        TemporaryAddDataTask(DB db,String entityName, int value, String type){
+        TemporaryAddDataTask(DB db, String entityName, int value, String type, int consumption){
             this.db = db;
             this.name = entityName;
             this.value = value;
             this.type = type;
+            this.consumption = consumption;
         }
 
         @Override
@@ -169,7 +168,7 @@ public class DailyStatisticsAdapter extends GenericRecyclerAdapter<Entity, OnRec
 
         @Override
         protected Void doInBackground(Void...params) {
-            db.addEntityToTemporaryDatabase(name,value,type);
+            db.addEntityToTemporaryDatabase(name,value,type,consumption);
             return null;
         }
 

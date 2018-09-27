@@ -8,11 +8,14 @@ import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.Database.NumberCaloryPreferences;
 import com.example.calorycountapp.View.MainActivity;
 import com.example.calorycountapp.View.MvpView;
-import com.example.calorycountapp.View.SettingsActivity;
+import com.example.calorycountapp.SettingsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivityPresenter extends PresenterBase {
 
@@ -27,9 +30,7 @@ public class MainActivityPresenter extends PresenterBase {
 
     @Override
     public void viewIsReady(String ident) {
-        //в момент подключения презентера идет команда на очистку временных баз
-        //в полночь
-        //setScheduledExecutorService();
+        setScheduledExecutorService();
     }
 
     @Override
@@ -38,71 +39,42 @@ public class MainActivityPresenter extends PresenterBase {
         mainActivity.startActivity(i);
     }
 
-    //TODO тестовый метод,удалить
-    public void testMethod(){
-        /**получаем значение количество набранных калорий за день*/
-        int caloryOfDay = NumberCaloryPreferences.getStoredCalory(context);
-        /**получаем общее количество потребленных калорий (нужно,чтобы высчитывать среднее потребление)*/
-        int constantCalory = NumberCaloryPreferences.getConstantCalory(context);
-        /**если количество набранных калорий за день отрицательное,обнуляем*/
-        if(caloryOfDay<0){
-            caloryOfDay = 0;
-        }
-        /**получаем текущую дату,она будет потом отображаться под каждым стобцом графика*/
-        String timeStamp = new SimpleDateFormat("m",new Locale("ru")).format(Calendar.getInstance().getTime());
-        /**запускаем таск*/
-        SetDataToHistoryDatabase taskHistory = new SetDataToHistoryDatabase(timeStamp,caloryOfDay,context);
-        taskHistory.execute();
-        /**добавляем к общему потребленному количеству калорий потребленное за день*/
-        constantCalory += caloryOfDay;
-        /**записываем общее потребленное количество калорий в преф*/
-        NumberCaloryPreferences.setConstantCalory(context,constantCalory);
-        /**обнуление данных в главном фрагменте потреблено за день */
-        NumberCaloryPreferences.setStoredCalory(context,0);
-        /**нужно,чтобы во фрагменте "Сегодня" данные обновились.То есть поскольку мы очистили
-         временную базу то во фрагменте "Сегодня" не должно быть ничего*/
-        mainActivity.recreateFragment();
 
-    }
 
-    //метод,который будет срабатывать ровно в полночь
-    /*private void setScheduledExecutorService(){
+    private void setScheduledExecutorService(){
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int delayInHour = hour < 23 ? 23 - hour : 24 - (hour - 23);
+        int delayInHour = hour < 18 ? 18 - hour : 24 - (hour - 23);
 
         scheduler.scheduleAtFixedRate
                 (new Runnable() {
                     public void run() {
-                        //получаем значение количество набранных калорий за день
+
                         int caloryOfDay = NumberCaloryPreferences.getStoredCalory(context);
-                        //получаем общее количество потребленных калорий (нужно,чтобы высчитывать среднее потребление)
+
                         int constantCalory = NumberCaloryPreferences.getConstantCalory(context);
-                        //если количество набранных калорий за день отрицательное,обнуляем
+
                         if(caloryOfDay<0){
                             caloryOfDay = 0;
                         }
-                        //получаем текущую дату,она будет потом отображаться под каждым стобцом графика
                         String timeStamp = new SimpleDateFormat("d MMM",new Locale("ru")).format(Calendar.getInstance().getTime());
-                        //запускаем таск
+
                         SetDataToHistoryDatabase taskHistory = new SetDataToHistoryDatabase(timeStamp,caloryOfDay,context);
                         taskHistory.execute();
-                        //добавляем к общему потребленному количеству калорий потребленное за день
+
                         constantCalory += caloryOfDay;
-                        //записываем общее потребленное количество калорий в преф
+
                         NumberCaloryPreferences.setConstantCalory(context,constantCalory);
-                        //в преф "потребленное за день" пишем 0
+
                         NumberCaloryPreferences.setStoredCalory(context,0);
-                        //нужно,чтобы во фрагменте "Сегодня" данные обновились.То есть поскольку мы очистили
-                        //временную базу то во фрагменте "Сегодня" не должно быть ничего
+
                         mainActivity.recreateFragment();
                     }
                 }, delayInHour, 24, TimeUnit.HOURS);
-    }*/
+    }
 
-    /**таск,его задача записывать количество калорий набранных за день и текущую дату в базу данных "История"
-     а также очищает временную базу (ту,которая наполняет фрагмент "Сегодня (DailyStatistics)")*/
+
     private class SetDataToHistoryDatabase extends AsyncTask<Void,Void,Void> {
 
         private int caloryNumberPerDay;

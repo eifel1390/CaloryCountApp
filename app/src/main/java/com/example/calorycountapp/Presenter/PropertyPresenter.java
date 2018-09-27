@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 
 import com.example.calorycountapp.Database.DB;
+import com.example.calorycountapp.Database.IntroDataSharedPreference;
 import com.example.calorycountapp.Database.NumberCaloryPreferences;
 import com.example.calorycountapp.EntityIdent;
 import com.example.calorycountapp.View.MvpView;
@@ -42,8 +43,8 @@ public class PropertyPresenter extends PresenterBase {
         activity.returnToPreviouslyActivity();
     }
 
-    public void addEntityToTemporaryTable(String entityName,int value,String entityType){
-        AddEntityToDatabase task = new AddEntityToDatabase(model,entityName,value,entityType);
+    public void addEntityToTemporaryTable(String entityName,int value,String entityType,int consumption){
+        AddEntityToDatabase task = new AddEntityToDatabase(model,entityName,value,entityType,consumption);
         task.execute();
     }
 
@@ -56,7 +57,8 @@ public class PropertyPresenter extends PresenterBase {
 
             task.execute(activity.entityName);
             try {
-                activity.setProductCalory(task.get());
+                int conversionCalory = conversionCaloryDependingOnAge(task.get());
+                activity.setProductCalory(conversionCalory);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
@@ -71,7 +73,7 @@ public class PropertyPresenter extends PresenterBase {
 
             task.execute(activity.entityName);
             try {
-                activity.setProductCalory(task.get());
+                activity.setProductCalory(conversionCaloryDependingOnAge(task.get()));
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
@@ -81,12 +83,33 @@ public class PropertyPresenter extends PresenterBase {
         }
     }
 
+    private int conversionCaloryDependingOnAge(int calory){
+        int weight = IntroDataSharedPreference.getUserWeight(context);
+        int norm = 50;
+        int percent = calory/5;
+        if(weight<norm){
+            for(int i=norm;i>weight;i-=10){
+                calory = calory - percent;
+            }
+        }
+        if(weight>norm) {
+            for(int i = norm;i<weight;i+=10){
+                calory = calory + percent;
+            }
+        }
+        else {
+            return calory;
+        }
+
+        return calory;
+    }
+
     private class GetProductCaloryTask extends AsyncTask<String, Void, Integer> {
 
         private DB db;
         private String entityType;
 
-        GetProductCaloryTask (DB db,String entityType){
+        GetProductCaloryTask (DB db, String entityType){
             this.db = db;
             this.entityType = entityType;
         }
@@ -136,13 +159,14 @@ public class PropertyPresenter extends PresenterBase {
         }
     }
 
-    //TODO посмотреть можно ли сделать общий класс AsynkTask чтобы не копипастить одинаковые onPreExecute и onPostExecute
+
     private class AddEntityToDatabase extends AsyncTask<Void,Void,Void>{
 
         private DB db;
         private String entityName;
         private int entityCount;
         private String entityType;
+        private int consumption;
 
 
         @Override
@@ -151,16 +175,17 @@ public class PropertyPresenter extends PresenterBase {
             db.open();
         }
 
-        public AddEntityToDatabase(DB db,String entityName,int entityCount,String entityType) {
+        public AddEntityToDatabase(DB db, String entityName, int entityCount, String entityType,int consumption) {
             this.db = db;
             this.entityName = entityName;
             this.entityCount = entityCount;
             this.entityType = entityType;
+            this.consumption = consumption;
         }
 
         @Override
         protected Void doInBackground(Void ... params) {
-            db.addEntityToTemporaryDatabase(entityName,entityCount,entityType);
+            db.addEntityToTemporaryDatabase(entityName,entityCount,entityType,consumption);
             return null;
         }
 
