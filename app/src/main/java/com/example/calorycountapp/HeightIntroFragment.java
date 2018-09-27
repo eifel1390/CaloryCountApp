@@ -21,21 +21,19 @@ public class HeightIntroFragment extends Fragment {
     public HeightIntroFragment() {}
 
     public static HeightIntroFragment newInstance() {
-        HeightIntroFragment f = new HeightIntroFragment();
-        return f;
+        return new HeightIntroFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.height_slide, container, false);
-        return v;
+        return inflater.inflate(R.layout.height_slide, container, false);
     }
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        heightInput = (EditText) getView().findViewById(R.id.editTextHeight);
+        heightInput =  getView().findViewById(R.id.editTextHeight);
 
         heightInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -47,7 +45,7 @@ public class HeightIntroFragment extends Fragment {
                     if(Integer.parseInt(charSequence.toString())!=0) {
                         IntroDataSharedPreference.setUserHeight(getContext(), Integer.parseInt(charSequence.toString()));
                     }
-                    else Toast.makeText(getContext(),"Рост не может быть 0!", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(getContext(),R.string.correct_height, Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -58,7 +56,9 @@ public class HeightIntroFragment extends Fragment {
                     if(Integer.parseInt(editable.toString()) == 0)
                         heightInput.setText("");
                 }
-                catch(NumberFormatException nfe){}
+                catch(NumberFormatException nfe){
+                    nfe.printStackTrace();
+                }
             }
         });
     }

@@ -6,8 +6,6 @@ import android.util.Log;
 
 public class ItemTouchHelperClass extends ItemTouchHelper.Callback {
 
-    private static final String TAG = "item";
-
     private ItemTouchHelperAdapter adapter;
 
     public interface ItemTouchHelperAdapter{
@@ -45,7 +43,6 @@ public class ItemTouchHelperClass extends ItemTouchHelper.Callback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        Log.d(TAG,String.valueOf(adapter==null));
         adapter.onItemRemoved(viewHolder.getAdapterPosition());
 
     }

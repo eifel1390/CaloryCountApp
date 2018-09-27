@@ -20,9 +20,7 @@ public class ResultScreenPresenter extends PresenterBase {
     }
 
     @Override
-    public void displayAnotherScreen(String nameOfScreen, String entityIdent) {
-
-    }
+    public void displayAnotherScreen(String nameOfScreen, String entityIdent) {}
 
     @Override
     public void viewIsReady(String ident) {

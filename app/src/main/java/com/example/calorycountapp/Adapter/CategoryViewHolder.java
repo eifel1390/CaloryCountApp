@@ -19,8 +19,8 @@ public class CategoryViewHolder extends
 
     public CategoryViewHolder(View itemView) {
         super(itemView);
-        categoryName = (TextView) itemView.findViewById(R.id.textView3);
-        categoryImage = (ImageView) itemView.findViewById(R.id.imageView);
+        categoryName =  itemView.findViewById(R.id.textView3);
+        categoryImage =  itemView.findViewById(R.id.imageView);
     }
 
 
@@ -96,7 +96,44 @@ public class CategoryViewHolder extends
         }
 
         else if(item instanceof Active) {
+
             categoryName.setText(((Active) item).getCategoryActive());
+            if(((Active) item).getCategoryActive().equals("Домашние дела")){
+                categoryImage.setImageResource(R.drawable.ic_house);
+            }
+            if(((Active) item).getCategoryActive().equals("Работа")){
+                categoryImage.setImageResource(R.drawable.ic_technical_support);
+            }
+            if(((Active) item).getCategoryActive().equals("Бег и ходьба")){
+                categoryImage.setImageResource(R.drawable.ic_run);
+            }
+            if(((Active) item).getCategoryActive().equals("Командный спорт")){
+                categoryImage.setImageResource(R.drawable.ic_basketball);
+            }
+            if(((Active) item).getCategoryActive().equals("Танцы")){
+                categoryImage.setImageResource(R.drawable.ic_dancer);
+            }
+            if(((Active) item).getCategoryActive().equals("Водные виды спорта")){
+                categoryImage.setImageResource(R.drawable.ic_swimming);
+            }
+            if(((Active) item).getCategoryActive().equals("Фитнесс и игры")){
+                categoryImage.setImageResource(R.drawable.ic_weightlifting);
+            }
+            if(((Active) item).getCategoryActive().equals("Зимние виды спорта")){
+                categoryImage.setImageResource(R.drawable.ic_ice_skate);
+            }
+            if(((Active) item).getCategoryActive().equals("Транспорт")){
+                categoryImage.setImageResource(R.drawable.ic_transport);
+            }
+            if(((Active) item).getCategoryActive().equals("Уборка")){
+                categoryImage.setImageResource(R.drawable.ic_wash);
+            }
+            if(((Active) item).getCategoryActive().equals("Уход за ребенком")){
+                categoryImage.setImageResource(R.drawable.ic_motherhood);
+            }
+            if(((Active) item).getCategoryActive().equals("Дача, сад")){
+                categoryImage.setImageResource(R.drawable.ic_garden);
+            }
         }
 
         if (listener != null) {

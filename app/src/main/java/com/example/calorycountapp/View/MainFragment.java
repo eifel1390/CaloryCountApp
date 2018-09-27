@@ -29,18 +29,17 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
     public MainFragment() {}
 
     public static MainFragment newInstance(int position) {
-        MainFragment f = new MainFragment();
-        return f;
+        return new MainFragment();
     }
 
-    //в момент создания инициализируем презентер
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initPresenter();
     }
 
-    //построение фрагмента,здесь вызываем initview
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -50,26 +49,25 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
         return v;
     }
 
-    //инициализация всех вьюшек во фрагменте,а такде проверка префа с набранными калориями
-    //за день и отображение этих калорий
+
     @Override
     public void initView(View v) {
         if(NumberCaloryPreferences.getStoredCalory(getContext())!=0) {
             calory = NumberCaloryPreferences.getStoredCalory(getContext());
         }
         else calory = 0;
-        toProduct = (Button) v.findViewById(R.id.plus);
+        toProduct =  v.findViewById(R.id.plus);
         toProduct.setOnClickListener(this);
-        toActive = (Button) v.findViewById(R.id.minus);
+        toActive =  v.findViewById(R.id.minus);
         toActive.setOnClickListener(this);
 
-        caloryNumberPerDay = (CaloryLevelButton) v.findViewById(R.id.number_of_calories);
+        caloryNumberPerDay =  v.findViewById(R.id.number_of_calories);
         caloryNumberPerDay.setLabelText(String.valueOf(calory));
         caloryNumberPerDay.setLabelColor(Color.WHITE);
-        //caloryNumberPerDay.setBackground(getResources().getDrawable(R.drawable.calory_button_border));
+
     }
 
-    //инициализация презентера
+
     @Override
     public void initPresenter() {
         presenter = new MainFragmentPresenter(this);
@@ -77,7 +75,7 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
         presenter.viewIsReady("");
     }
 
-    //отображение количества калорий
+
     @Override
     public void onResume() {
         super.onResume();
@@ -106,7 +104,7 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
     }
 
 
-    //реакция на нажатие кнопок + и -
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -119,16 +117,14 @@ public class MainFragment extends Fragment implements MvpView, View.OnClickListe
         }
     }
 
-    //отсоединяем фрагмент
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         presenter.detachView();
     }
 
-    //этот метод обновляет отображение количества калорий.Вызывается при изменении
-    //данных во фрагменте "Сегодня".Если там пользователь удаляет продукт или активность
-    //то соответственно нужно или уменьшить или увеличить количество калорий
+
     protected void displayReceivedData(int calory)
     {
         caloryNumberPerDay.setLabelText(String.valueOf(calory));

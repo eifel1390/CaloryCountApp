@@ -42,34 +42,29 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
         if (!prefManager.isFirstTimeLaunch()) {
             launchHomeScreen();
             finish();
         }
 
-        // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
 
         setContentView(R.layout.intro_activity);
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
-        btnNext = (Button) findViewById(R.id.btn_next);
+        viewPager =  findViewById(R.id.view_pager);
+        dotsLayout =  findViewById(R.id.layoutDots);
+        btnNext =  findViewById(R.id.btn_next);
         manager = getSupportFragmentManager();
 
 
         fragmentsList = new ArrayList<>();
         populateFragmentsList(fragmentsList);
 
-
-        // adding bottom dots
         addBottomDots(0);
 
-        // making notification bar transparent
         changeStatusBarColor();
 
         myViewPagerAdapter = new IntroActivity.MyFragmentPagerAdapter(manager);
@@ -81,18 +76,16 @@ public class IntroActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // checking for last page
-                // if last page home screen will be launched
+
                 int current = getItem(+1);
                 if (current < fragmentsList.size()) {
-                    // move to next screen
+
                     viewPager.setCurrentItem(current);
                 }
 
                 else {
                     if(checkedField()) {
                         launchResultScreen();
-                        //launchHomeScreen();
                     }
                 }
             }
@@ -213,17 +206,12 @@ public class IntroActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
-
-            // changing the next button text 'NEXT' / 'GOT IT'
             if (position == fragmentsList.size() - 1) {
-                // last page. make button text to GOT IT
                 btnNext.setText(getString(R.string.start));
             } else {
                 // still pages are left
                 btnNext.setText(getString(R.string.next));
             }
-
-
         }
 
         @Override
@@ -236,7 +224,5 @@ public class IntroActivity extends AppCompatActivity {
 
         }
     };
-
-
 }
 

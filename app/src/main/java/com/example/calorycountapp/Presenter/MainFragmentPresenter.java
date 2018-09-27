@@ -24,7 +24,7 @@ public class MainFragmentPresenter extends PresenterBase {
     @Override
     public void viewIsReady(String string) {}
 
-    //обрабатывает нажатие на кнопки + и -
+
     @Override
     public void displayAnotherScreen(String nameOfScreen,String entityIdent) {
         Intent intent;

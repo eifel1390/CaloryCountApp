@@ -2,14 +2,11 @@ package com.example.calorycountapp.Adapter;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.example.calorycountapp.Database.DB;
 import com.example.calorycountapp.Database.NumberCaloryPreferences;
@@ -18,7 +15,6 @@ import com.example.calorycountapp.ItemTouchHelperClass;
 import com.example.calorycountapp.Model.Active;
 import com.example.calorycountapp.Model.Entity;
 import com.example.calorycountapp.Model.Product;
-import com.example.calorycountapp.Model.TemporaryEntity;
 import com.example.calorycountapp.R;
 
 import java.util.Collections;
@@ -30,13 +26,14 @@ public class CategoryDetailAdapter extends
 
     private List<Entity> items;
     private EntityDeleteFromDatabase task;
-    private Entity deletedItem;
     private int indexOfDeletedItem;
     private CoordinatorLayout coordinatorLayout;
     private DB db;
+    private Context context;
 
     public CategoryDetailAdapter(Context context,CoordinatorLayout layout) {
         super(context);
+        this.context = context;
         this.coordinatorLayout = layout;
         db = new DB(context);
         this.items = super.items;
@@ -44,7 +41,7 @@ public class CategoryDetailAdapter extends
 
     @Override
     public CategoryDetailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new CategoryDetailViewHolder(inflate(R.layout.category_detail_item2, parent));
+        return new CategoryDetailViewHolder(inflate(R.layout.category_detail_item, parent));
     }
 
     @Override
@@ -64,58 +61,49 @@ public class CategoryDetailAdapter extends
 
     @Override
     public void onItemRemoved(final int position) {
-        deletedItem = items.remove(position);
-        Log.d("23","deletedItem class is "+String.valueOf(deletedItem.getClass()));
+        Entity value = items.remove(position);
         indexOfDeletedItem = position;
 
-
-        if(deletedItem instanceof Product) {
-            Product product = (Product) deletedItem;
-            Log.d("23","deletedItem category is "+String.valueOf(product.getCategoryProduct()));
-            task = new EntityDeleteFromDatabase(db,product.getName(),"product");
+        if (value instanceof Product) {
+            Product product1 = (Product)value;
+            task = new EntityDeleteFromDatabase(db,product1.getName(),"product");
             task.execute();
+            setShackBar(product1);
         }
-
-        if(deletedItem instanceof Active) {
-            Active active = (Active) deletedItem;
-            task = new EntityDeleteFromDatabase(db,active.getNameActive(),"active");
+        if (value instanceof Active) {
+            Active active1 = (Active)value;
+            task = new EntityDeleteFromDatabase(db,active1.getNameActive(),"active");
             task.execute();
+            setShackBar(active1);
         }
-
         notifyItemRemoved(position);
+    }
 
-        Snackbar.make(coordinatorLayout, "Удалено "+kindOfEntity(deletedItem),Snackbar.LENGTH_LONG)
 
-                .setAction("ОТМЕНИТЬ", new View.OnClickListener() {
+    private void setShackBar(final Entity entity){
+        Snackbar.make(coordinatorLayout, R.string.deleted+" "+kindOfEntity(entity),Snackbar.LENGTH_LONG)
+
+                .setAction(R.string.cancelled, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        items.add(indexOfDeletedItem, deletedItem);
+                        items.add(indexOfDeletedItem, entity);
 
-                        if(deletedItem instanceof Product){
-                            Log.d("23","deletedItem is null? "+String.valueOf(deletedItem==null));
-                            Product product = (Product) deletedItem;
-                            Log.d("23","product is null? "+String.valueOf(product==null));
-                            //String name = p.getName();
-                            //int calory = ((Product) deletedItem).getCaloricity();
-                            //String category = ((Product) deletedItem).getCategoryProduct();
-                            //Log.d("23",String.valueOf(product.getCategoryProduct()));
+                        if(entity instanceof Product){
+                            Product product = (Product) entity;
                             EntityAddToDatabase task = new EntityAddToDatabase(db,product.getName(),product.getCaloricity(),
-                                    "product",product.getCategoryProduct());
+                                    EntityIdent.IS_PRODUCT,NumberCaloryPreferences.getCategoryName(context));
                             task.execute();
                         }
-                        if(deletedItem instanceof Active){
-                            Log.d("23","deletedItem is null? "+String.valueOf(deletedItem==null));
-                            Active active = (Active) deletedItem;
-                            Log.d("23","active is null? "+String.valueOf(active==null));
+                        if(entity instanceof Active){
+                            Active active = (Active) entity;
                             EntityAddToDatabase task = new EntityAddToDatabase(db,active.getNameActive(),
-                                    active.getCaloricityCost(),"active",active.getCategoryActive());
+                                    active.getCaloricityCost(),EntityIdent.IS_ACTIVE,NumberCaloryPreferences.getCategoryName(context));
                             task.execute();
                         }
 
                         notifyItemInserted(indexOfDeletedItem);
                     }
                 }).show();
-
 
     }
 
@@ -152,18 +140,11 @@ public class CategoryDetailAdapter extends
 
         @Override
         protected Void doInBackground(Void...params) {
-            if(identOfEntity.equals("product")) {
-                Log.d("34","in delete "+name);
+            if(identOfEntity.equals(EntityIdent.IS_PRODUCT)) {
                 db.deleteProductFromDatabase(name);
-
-
             }
-            if(identOfEntity.equals("active")) {
-                Log.d("34",name);
-                Log.d("34","in delete "+name);
+            if(identOfEntity.equals(EntityIdent.IS_ACTIVE)) {
                 db.deleteActiveFromDatabase(name);
-
-
             }
             return null;
         }
@@ -200,15 +181,11 @@ public class CategoryDetailAdapter extends
 
         @Override
         protected Void doInBackground(Void...params) {
-            if(type.equals("product")){
-                Log.d("34","in insert "+category);
+            if(type.equals(EntityIdent.IS_PRODUCT)){
                 db.addProductToDatabase(category,name,caloryOrCost);
-
             }
-            if(type.equals("active")){
-                Log.d("34","in insert "+category);
+            if(type.equals(EntityIdent.IS_ACTIVE)){
                 db.addActiveToDatabase(category,name,caloryOrCost);
-
             }
             return null;
         }

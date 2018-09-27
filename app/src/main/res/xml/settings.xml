@@ -56,14 +56,6 @@
         android:title="Изменение нормы калорий">
     </EditTextPreference>
 
-    <ListPreference
-        android:entries="@array/languages"
-        android:entryValues="@array/entry_languages"
-        android:key="languages_list"
-        android:summary="Настройка языка приложения"
-        android:title="Выбрать язык">
-    </ListPreference>
-
     <Preference
         android:key="clear_history"
         android:title="Очистить историю">

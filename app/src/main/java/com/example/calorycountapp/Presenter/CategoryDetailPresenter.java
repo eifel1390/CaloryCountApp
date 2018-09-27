@@ -32,7 +32,7 @@ public class CategoryDetailPresenter extends PresenterBase {
         model = new DB(context);
     }
 
-    //вызывается если пользователь хочет добавить новый продукт или активность
+
     @Override
     public void displayAnotherScreen(String nameCategory, String entityIdent) {
         Intent intent = new Intent(activity, AddNewEntity.class);
@@ -41,7 +41,7 @@ public class CategoryDetailPresenter extends PresenterBase {
         activity.startActivity(intent);
     }
 
-    //вызывается при нажатии пользователем на продукт или активность
+
     public void displayPropertyActivity(String productName,String entityType){
         Intent intent = new Intent(activity,Property.class);
         intent.putExtra(Property.ENTITY_NAME, productName);
@@ -49,8 +49,7 @@ public class CategoryDetailPresenter extends PresenterBase {
         activity.startActivity(intent);
     }
 
-    //получает название категории и идент,который определяет загружать из базы
-    //список из продуктов или активности
+
     public void loadNameByCategory(String categoryName,String entityIdent){
         if(entityIdent.equals(EntityIdent.IS_PRODUCT)) {
             DetailCategoryTask task = new DetailCategoryTask(model, EntityIdent.IS_PRODUCT);
@@ -63,9 +62,8 @@ public class CategoryDetailPresenter extends PresenterBase {
         }
     }
 
-    //получает таск,достает его результат(список продуктов или активностей)
-    //и отображает его в активити
-    public void loadEntityList(DetailCategoryTask task,String categoryName){
+
+    private void loadEntityList(DetailCategoryTask task,String categoryName){
         task.execute(categoryName);
         try {
             activity.showData(task.get());
@@ -81,7 +79,7 @@ public class CategoryDetailPresenter extends PresenterBase {
     @Override
     public void viewIsReady(String ident) {}
 
-    //таск который загружает из базы список продуктов или активностей
+
     private class DetailCategoryTask extends AsyncTask<String, Void, List<Entity>> {
 
         private DB db;
@@ -139,8 +137,6 @@ public class CategoryDetailPresenter extends PresenterBase {
             }
             return entityList;
         }
-
-
 
         @Override
         protected void onPostExecute(List<Entity> list) {

@@ -34,15 +34,9 @@ public class DailyStatisticsFragment extends Fragment implements CategoryView,On
 
     public DailyStatisticsFragment() {}
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     public static DailyStatisticsFragment newInstance(int position) {
-        DailyStatisticsFragment f = new DailyStatisticsFragment();
-        Bundle b = new Bundle();
-        return f;
+        return new DailyStatisticsFragment();
     }
 
     @Nullable
@@ -67,8 +61,8 @@ public class DailyStatisticsFragment extends Fragment implements CategoryView,On
 
     @Override
     public void initView(View v) {
-        coordinatorLayout = (CoordinatorLayout) v.findViewById(R.id.myCoordinatorLayout);
-        recyclerView = (RecyclerView) v.findViewById(R.id.list_of_consumed_and_accrued);
+        coordinatorLayout = v.findViewById(R.id.myCoordinatorLayout);
+        recyclerView =  v.findViewById(R.id.list_of_consumed_and_accrued);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));

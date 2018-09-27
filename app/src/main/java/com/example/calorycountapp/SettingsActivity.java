@@ -26,7 +26,6 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
-        //clearPreviousInput();
         Preference pref = findPreference("clear_history");
         pref.setOnPreferenceClickListener(this);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -37,31 +36,26 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 
             if(key.equals("screen_gender")){
-                Log.d("23","key is "+key);
                 String gender = sp.getString("screen_gender", "");
                 IntroDataSharedPreference.setUserGender(SettingsActivity.this,Integer.parseInt(gender));
                 setIntentToResultScreen();
             }
             if(key.equals("enterAge")){
-                Log.d("23","key is "+key);
                 int age = Integer.parseInt(sp.getString("enterAge", ""));
                 IntroDataSharedPreference.setUserAge(SettingsActivity.this,age);
                 setIntentToResultScreen();
             }
             if(key.equals("enterWeight")){
-                Log.d("23","key is "+key);
                 int weight = Integer.parseInt(sp.getString("enterWeight", ""));
                 IntroDataSharedPreference.setUserWeight(SettingsActivity.this,weight);
                 setIntentToResultScreen();
             }
             if(key.equals("enterHeight")){
-                Log.d("23","key is "+key);
                 int height = Integer.parseInt(sp.getString("enterHeight", ""));
                 IntroDataSharedPreference.setUserHeight(SettingsActivity.this,height);
                 setIntentToResultScreen();
             }
             if(key.equals("list")){
-                Log.d("23","key is "+key);
                 String target = sp.getString("list", "не выбрано");
                 IntroDataSharedPreference.setUserTarget(SettingsActivity.this,Integer.parseInt(target));
                 setIntentToResultScreen();
@@ -83,7 +77,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
     }
 
 
-    public void clearPreviousInput(){
+    /*public void clearPreviousInput(){
         ListPreference genderPref = (ListPreference) findPreference("screen_gender");
         EditTextPreference agePref = (EditTextPreference)findPreference("enterAge");
         EditTextPreference weightPref = (EditTextPreference)findPreference("enterWeight");
@@ -98,9 +92,9 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
         purposePref.setValue("");
         languagePref.setValue("");
         enterCaloryPref.setText("");
-    }
+    }*/
 
-    //кнопка очистить историю
+
     @Override
     public boolean onPreferenceClick(Preference preference) {
         NumberCaloryPreferences.setLimitCalory(getApplication(), 0);

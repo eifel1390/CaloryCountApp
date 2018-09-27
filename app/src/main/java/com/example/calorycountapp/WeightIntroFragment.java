@@ -20,21 +20,19 @@ public class WeightIntroFragment extends Fragment {
     public WeightIntroFragment() {}
 
     public static WeightIntroFragment newInstance() {
-        WeightIntroFragment f = new WeightIntroFragment();
-        return f;
+        return new WeightIntroFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.weight_slide, container, false);
-        return v;
+        return inflater.inflate(R.layout.weight_slide, container, false);
     }
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        weightInput = (EditText) getView().findViewById(R.id.editTextWeight);
+        weightInput =  getView().findViewById(R.id.editTextWeight);
 
         weightInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -46,7 +44,7 @@ public class WeightIntroFragment extends Fragment {
                     if(Integer.parseInt(charSequence.toString())!=0) {
                         IntroDataSharedPreference.setUserWeight(getContext(), Integer.parseInt(charSequence.toString()));
                     }
-                    else Toast.makeText(getContext(),"Вес не может быть 0!", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(getContext(),R.string.correct_weight, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -56,7 +54,9 @@ public class WeightIntroFragment extends Fragment {
                     if(Integer.parseInt(editable.toString()) == 0)
                         weightInput.setText("");
                 }
-                catch(NumberFormatException nfe){}
+                catch(NumberFormatException nfe){
+                    nfe.printStackTrace();
+                }
             }
         });
     }

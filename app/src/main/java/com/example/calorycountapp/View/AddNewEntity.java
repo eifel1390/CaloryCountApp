@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.calorycountapp.EntityIdent;
 import com.example.calorycountapp.Presenter.AddNewEntityPresenter;
 import com.example.calorycountapp.R;
 
@@ -40,7 +41,6 @@ public class AddNewEntity extends AppCompatActivity implements MvpView {
         presenter.attachView(this);
     }
 
-    //возврат на CategoryDetail
     public void returnToPreviouslyActivity(){
         Intent intent = new Intent(this,CategoryDetail.class);
         intent.putExtra(CategoryDetail.CATEGORY_DETAIL,entityCategory);
@@ -52,10 +52,20 @@ public class AddNewEntity extends AppCompatActivity implements MvpView {
 
     @Override
     public void initView() {
-        addEntityName = (EditText) findViewById(R.id.addNameProduct);
-        addEntityCaloricity = (EditText) findViewById(R.id.addNameCaloricity);
-        addNewEntity = (Button) findViewById(R.id.saveProduct);
-        cancel = (Button) findViewById(R.id.cancelProduct);
+        addEntityName =  findViewById(R.id.addNameProduct);
+        addEntityCaloricity =  findViewById(R.id.addNameCaloricity);
+        if(entityType.equals(EntityIdent.IS_PRODUCT)){
+            addEntityName.setHint(R.string.product_name);
+            addEntityCaloricity.setHint(R.string.quantityIn100);
+        }
+        if(entityType.equals(EntityIdent.IS_ACTIVE)){
+            addEntityName.setHint(R.string.active_name);
+            addEntityCaloricity.setHint(R.string.quntityInHour);
+        }
+
+
+        addNewEntity =  findViewById(R.id.saveProduct);
+        cancel =  findViewById(R.id.cancelProduct);
         addNewEntity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

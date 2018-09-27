@@ -31,6 +31,21 @@
     <string name="your_limit">Ваш установленный лимит </string>
     <string name="medium_calory_in_day">Середнее потребление калорий в день </string>
     <string name="fruits_string">Фрукты</string>
+    <string name="deleted">Удалено</string>
+    <string name="cancelled">ОТМЕНИТЬ</string>
+    <string name="save">СОХРАНИТЬ</string>
+    <string name="gramm"> грамм</string>
+    <string name="minute"> минут</string>
+    <string name="product_name">Название продукта</string>
+    <string name="quantityIn100">Количество калорий в 100 граммах</string>
+    <string name="active_name">Название активности</string>
+    <string name="quntityInHour">Количество сжигаемых калорий в час</string>
+    <string name="choosen">Выбрано </string>
+    <string name="correct_age">Возраст не может быть 0!</string>
+    <string name="correct_height">Рост не может быть 0!</string>
+    <string name="correct_weight">Вес не может быть 0!</string>
+
+
 
     <string-array name="entries">
         <item>Похудение</item>

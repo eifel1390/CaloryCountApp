@@ -22,21 +22,19 @@ public class AgeIntroFragment extends Fragment {
     public AgeIntroFragment() {}
 
     public static AgeIntroFragment newInstance() {
-        AgeIntroFragment f = new AgeIntroFragment();
-        return f;
+        return new AgeIntroFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.age_slide, container, false);
-        return v;
+        return inflater.inflate(R.layout.age_slide, container, false);
     }
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ageInput = (EditText) getView().findViewById(R.id.editTextAge);
+        ageInput =  getView().findViewById(R.id.editTextAge);
 
         ageInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -48,7 +46,7 @@ public class AgeIntroFragment extends Fragment {
                     if(Integer.parseInt(charSequence.toString())!=0) {
                         IntroDataSharedPreference.setUserAge(getContext(), Integer.parseInt(charSequence.toString()));
                     }
-                    else Toast.makeText(getContext(),"Возраст не может быть 0!", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(getContext(),R.string.correct_age, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -58,7 +56,9 @@ public class AgeIntroFragment extends Fragment {
                     if(Integer.parseInt(editable.toString()) == 0)
                         ageInput.setText("");
                 }
-                catch(NumberFormatException nfe){}
+                catch(NumberFormatException nfe){
+                    nfe.printStackTrace();
+                }
             }
         });
     }

@@ -29,15 +29,13 @@ import java.util.List;
 public class Category extends AppCompatActivity implements CategoryView,OnRecyclerObjectClickListener<Entity> {
 
     public static final String ENTITY_IDENT = "entity_ident";
-    //private final String DIALOG_WEIGHT = "dialog_weight";
+
 
     private RecyclerView recyclerView;
     private CategoryAdapter adapter;
     private CategoryPresenter presenter;
     private String ident;
-    //private Dialog dialog;
-    //private Button okButton;
-    //private EditText weightEditText;
+
 
 
     @Override
@@ -52,7 +50,7 @@ public class Category extends AppCompatActivity implements CategoryView,OnRecycl
 
     @Override
     public void initToolbar() {
-        Toolbar productCategoryToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar productCategoryToolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(productCategoryToolbar);
         ActionBar ab = getSupportActionBar();
         if(ab!=null) ab.setDisplayHomeAsUpEnabled(true);
@@ -67,7 +65,7 @@ public class Category extends AppCompatActivity implements CategoryView,OnRecycl
 
     @Override
     public void initView() {
-        recyclerView = (RecyclerView) findViewById(R.id.categoryRecyclerView);
+        recyclerView =  findViewById(R.id.categoryRecyclerView);
         adapter = new CategoryAdapter(this);
         adapter.setListener(this);
         recyclerView.setAdapter(adapter);
@@ -78,9 +76,11 @@ public class Category extends AppCompatActivity implements CategoryView,OnRecycl
     public void onItemClicked(Entity item) {
         if(item instanceof Product) {
             presenter.displayAnotherScreen(((Product) item).getCategoryProduct(), EntityIdent.IS_PRODUCT);
+            NumberCaloryPreferences.setCategoryName(this,((Product) item).getCategoryProduct());
         }
         else if(item instanceof Active) {
             presenter.displayAnotherScreen(((Active) item).getCategoryActive(), EntityIdent.IS_ACTIVE);
+            NumberCaloryPreferences.setCategoryName(this,((Active) item).getCategoryActive());
         }
     }
 
@@ -100,31 +100,6 @@ public class Category extends AppCompatActivity implements CategoryView,OnRecycl
 
     @Override
     public void initToolbar(View v) {}
-
-    /*public void prepareWeightDialog(){
-        dialog = new Dialog(this);
-
-        dialog.setContentView(R.layout.weight_dialog);
-        dialog.setTitle("Укажите Ваш вес");
-
-        Log.d("3490",String.valueOf(dialog==null));
-
-        okButton = (Button) dialog.findViewById(R.id.setWeightButton);
-        Log.d("3490","button "+String.valueOf(okButton==null));
-        weightEditText = (EditText) dialog.findViewById(R.id.editTextWeight);
-        Log.d("3490","edittext "+String.valueOf(weightEditText==null));
-        okButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NumberCaloryPreferences.setUserWeight(Category.this,weightEditText.getText().toString());
-            }
-        });
-
-        dialog.show();
-
-    }*/
-
-
 }
 
 

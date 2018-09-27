@@ -8,8 +8,6 @@ public class MediumCaloriesPreferences {
     private static final String HISTORY_COUNT = "historyCount";
 
 
-
-
     public static int getHistorySize(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(HISTORY_COUNT,0);
