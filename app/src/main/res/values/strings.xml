@@ -44,6 +44,7 @@
     <string name="correct_age">Возраст не может быть 0!</string>
     <string name="correct_height">Рост не может быть 0!</string>
     <string name="correct_weight">Вес не может быть 0!</string>
+    <string name="result_message">Это рекомендованная Вам дневная норма калорий.Вы сможете изменить норму калорий через меню Настройки</string>
 
 
 
