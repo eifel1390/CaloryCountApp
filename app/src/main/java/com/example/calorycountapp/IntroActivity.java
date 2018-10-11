@@ -209,7 +209,6 @@ public class IntroActivity extends AppCompatActivity {
             if (position == fragmentsList.size() - 1) {
                 btnNext.setText(getString(R.string.start));
             } else {
-                // still pages are left
                 btnNext.setText(getString(R.string.next));
             }
         }
