@@ -1,6 +1,6 @@
 # CaloryCountApp
 This is application for daily calculation of consuming calories.Based on MVP-pattern.
-Used SQLite database, ScheduledExecutorService , GenericRecyclerAdapter.
+Uses SQLite database, ScheduledExecutorService , GenericRecyclerAdapter.
 
 (https://user-images.githubusercontent.com/27302371/46144177-b3391b00-c24b-11e8-9c28-b5b1be6cc937.png)
 
